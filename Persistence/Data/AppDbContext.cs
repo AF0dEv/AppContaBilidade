@@ -18,6 +18,9 @@ namespace RegistoMovimentosSrJoaquim.Persistence.Data
             // Trust Server Certificate -> Para conectar precisa de Certificado, como não tenho, cria e define como trusted
             string connectionString = ConfigurationManager.ConnectionStrings["Lagostim"].ConnectionString;
             optionsBuilder.UseSqlServer(connectionString);
+                                        maxRetryCount: 5,
+                                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                                        errorNumbersToAdd: null));
         }
 
         // Relações
