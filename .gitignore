@@ -363,5 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Ignore File
-App.config
 /Persistence/Data/App.config
