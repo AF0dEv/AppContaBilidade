@@ -13,14 +13,14 @@ namespace RegistoMovimentosSrJoaquim.Persistence.Data
     {
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Movimento>? Movimentos { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Trust Server Certificate -> Para conectar precisa de Certificado, como não tenho, cria e define como trusted
             string connectionString = ConfigurationManager.ConnectionStrings["Lagostim"].ConnectionString;
             optionsBuilder.UseSqlServer(connectionString);
-                                        maxRetryCount: 5,
-                                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                                        errorNumbersToAdd: null));
+                                        
         }
 
         // Relações
