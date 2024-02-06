@@ -15,11 +15,7 @@ namespace RegistoMovimentosSrJoaquim.Persistence.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Trust Server Certificate -> Para conectar precisa de Certificado, como não tenho, cria e define como trusted 
-            optionsBuilder.UseSqlServer(@"data source = 62.28.39.135,62444;Initial Catalog=AfonsoMovSrJoaquim;User ID=EFAafonso;Password=Abc.123##; trust server certificate = true;",
-                                        options => options.EnableRetryOnFailure(
-                                        maxRetryCount: 5,
-                                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                                        errorNumbersToAdd: null));
+           
         }
 
         // Relações
