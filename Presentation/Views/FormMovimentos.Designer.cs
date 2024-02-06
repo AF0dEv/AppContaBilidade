@@ -178,6 +178,7 @@
             btnCriarClix.TabIndex = 13;
             btnCriarClix.Text = "CRIAR";
             btnCriarClix.UseVisualStyleBackColor = true;
+            btnCriarClix.Click += btnCriarClix_Click;
             // 
             // txtMarcacao
             // 

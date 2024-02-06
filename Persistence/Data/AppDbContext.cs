@@ -2,6 +2,7 @@
 using RegistoMovimentosSrJoaquim.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,9 @@ namespace RegistoMovimentosSrJoaquim.Persistence.Data
         public DbSet<Movimento>? Movimentos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Trust Server Certificate -> Para conectar precisa de Certificado, como não tenho, cria e define como trusted 
-            optionsBuilder.UseSqlServer(@"data source = 62.28.39.135,62444;Initial Catalog=AfonsoMovSrJoaquim;User ID=EFAafonso;Password=Abc.123##; trust server certificate = true;",
-                                        options => options.EnableRetryOnFailure(
-                                        maxRetryCount: 5,
-                                        maxRetryDelay: TimeSpan.FromSeconds(30),
-                                        errorNumbersToAdd: null));
+            // Trust Server Certificate -> Para conectar precisa de Certificado, como não tenho, cria e define como trusted
+            string connectionString = ConfigurationManager.ConnectionStrings["Lagostim"].ConnectionString;
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         // Relações

@@ -133,9 +133,9 @@
             // 
             // btnCriarMov
             // 
-            btnCriarMov.BackColor = Color.Transparent;
+            btnCriarMov.BackColor = Color.LightSteelBlue;
             btnCriarMov.Cursor = Cursors.Hand;
-            btnCriarMov.FlatStyle = FlatStyle.Flat;
+            btnCriarMov.FlatStyle = FlatStyle.Popup;
             btnCriarMov.Location = new Point(816, 378);
             btnCriarMov.Margin = new Padding(3, 2, 3, 2);
             btnCriarMov.Name = "btnCriarMov";

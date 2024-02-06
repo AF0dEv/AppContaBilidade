@@ -1,4 +1,5 @@
-﻿using RegistoMovimentosSrJoaquim.Business.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistoMovimentosSrJoaquim.Business.Models;
 using RegistoMovimentosSrJoaquim.Persistence.Data;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             {
                 db = new AppDbContext();
                 db.Movimentos.Add(mv);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -37,6 +39,22 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             {
                 db = new AppDbContext();
                 db.Movimentos.Update(mv);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { db.Dispose(); }
+        }
+
+        public void deleteMovimento(Movimento mv)
+        {
+            try
+            {
+                db = new AppDbContext();
+                db.Movimentos.Remove(mv);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {

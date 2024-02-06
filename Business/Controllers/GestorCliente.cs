@@ -24,6 +24,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             {
                 db = new AppDbContext();
                 db.Clientes.Add(c);
+                db.SaveChanges();
 
             }catch (Exception ex)
             {
@@ -39,6 +40,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             {
                 db = new AppDbContext();
                 db.Clientes.Update(c);
+                db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -46,7 +48,21 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             }
             finally { db.Dispose(); }
         }
-        // * FUTURAMENTE IMPLEMENTAR REMOVER APESAR DE NAO SER USADO * \\
+        
+        public void deleteCliente(Cliente c)
+        {
+            try
+            {
+                db = new AppDbContext();
+                db.Clientes.Remove(c);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { db.Dispose(); }
+        }
 
 
     }

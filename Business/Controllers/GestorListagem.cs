@@ -154,7 +154,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
                 // Nome
 
-                dgv.Columns[0].Width = 250;
+                dgv.Columns[0].Width = 50;
                 dgv.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].HeaderText = "Cliente";
@@ -185,7 +185,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
                 // Nome
 
-                dgv.Columns[0].Width = 250;
+                dgv.Columns[0].Width = 50;
                 dgv.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].HeaderText = "Cliente";
@@ -216,7 +216,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
                 // Cliente
 
-                dgv.Columns[0].Width = 250;
+                dgv.Columns[0].Width = 50;
                 dgv.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].HeaderText = "Cliente";
@@ -265,7 +265,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
                 // Cliente
 
-                dgv.Columns[0].Width = 250;
+                dgv.Columns[0].Width = 50;
                 dgv.Columns[0].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[0].HeaderText = "Cliente";

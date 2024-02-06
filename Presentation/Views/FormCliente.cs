@@ -59,10 +59,17 @@ namespace RegistoMovimentosSrJoaquim
                 c.Estado = estado;
 
                 pc.addCliente(c);
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
+            }
+            finally
+            {
+                ls.preencherDGV(dgvCliente, "Cliente");
+                ls.preencherDGV(dgvClienteAtivo, "EstadoAtivo");
+                ls.preencherDGV(dgvClientePendente, "EstadoPendente");
             }
         }
     }

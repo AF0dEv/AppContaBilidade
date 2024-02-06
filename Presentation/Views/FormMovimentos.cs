@@ -23,6 +23,7 @@ namespace RegistoMovimentosSrJoaquim
         // ============== PROPERTIES ===============
 
         Listagem ls = new Listagem();
+        Movimento mv = new Movimento();
         ProgramController pc = new ProgramController();
 
 
@@ -46,6 +47,18 @@ namespace RegistoMovimentosSrJoaquim
             pc.FormatarDGV(dgvMovimento, "Movimento");
             pc.FormatarDGV(dgvMvMarcados, "Marcados");
             pc.FormatarDGV(dgvMvLivres, "Livres");
+        }
+
+        private void btnCriarClix_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
