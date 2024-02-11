@@ -377,6 +377,22 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             }
         }
 
+        public void ListarClientes(ComboBox cbx, DataGridView dgv)
+        {
+            string dataText = cbx.SelectedText;
+
+            var ls = db.Movimentos.Select(m => new
+            {
+                m.Id,
+                Cliente = m.IdCliente.Nome,
+                m.Valor,
+                m.Tipo,
+                m.Data,
+                m.Descricao,
+                m.Marcacao,
+            }); 
+        }
+
         // * LISTAR CLIENTES * \\
         // * LISTAR MOVIMENTOS CLIENTE * \\ 
         // * COMPARAR MOVIMENTOS DE UM ANO PARA O OUTRO E MENSAIS * \\ 

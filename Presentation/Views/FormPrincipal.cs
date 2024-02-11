@@ -20,51 +20,16 @@ namespace RegistoMovimentosSrJoaquim
         // ============= MÉTODOS ================
         private void V_Load(object sender, EventArgs e)
         {
-
-            ls.preencherCBX(cbxMes, "Mes");
-            ls.preencherCBX(cbxCliente, "Cliente");
+            ls.preencherCBX(cbxClienteMov, "Cliente");
+            ls.preencherCBX(cbxTipo, "Tipo");
             ls.preencherDGV(dgvPrincipal, "Movimento");
-            ls.preencherDGV(dgvEntradas, "Entradas");
-            ls.preencherDGV(dgvSaidas, "Saidas");
+            ls.preencherDGV(dgvMvMarcados, "Marcados");
+            ls.preencherDGV(dgvMvLivres, "Livres");
             pc.FormatarDGV(dgvPrincipal, "Movimento");
-            pc.FormatarDGV(dgvEntradas, "Entradas");
-            pc.FormatarDGV(dgvSaidas, "Saidas");
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // * PERGUNTAR PJ PORQUE NÃO FUNCIONA ASSIM * \\
-
-            //for (int i = 0; i <= cbxCliente.Items.Count; i++)
-            //{
-            //    cbxFullList.Add(cbxCliente.Items[i].ToString(), i); 
-            //}
-
-
-            //ls.FilterList(false, cbxCliente, cbxBusy, cbxFullList, cbxFilteredList);
+            pc.FormatarDGV(dgvMvMarcados, "Marcados");
+            pc.FormatarDGV(dgvMvLivres, "Livres");
         }
 
-        private void btnCriarCliente_Click(object sender, EventArgs e)
-        {
-            FormCliente formCliente = new FormCliente();
-            formCliente.Show();
-            this.Hide();
-        }
 
-        private void btnCriarMov_Click(object sender, EventArgs e)
-        {
-            FormMovimentos formMovimentos = new FormMovimentos();
-            formMovimentos.Show();
-            this.Hide();
-        }
     }
 }
