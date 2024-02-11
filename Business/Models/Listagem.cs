@@ -105,27 +105,55 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
             }
         }
 
+        public static decimal GetSaldoCorrente(string cliente, DateTime data)
+        {
+            AppDbContext db = new AppDbContext();
+            var saldoPositivo = db.Movimentos.Where(m => m.IdCliente.Nome == cliente && m.Tipo == 'C' && m.Data <= data).Sum(m => m.Valor);
+            var saldoNegativo = db.Movimentos.Where(m => m.IdCliente.Nome == cliente && m.Tipo == 'D' && m.Data <= data).Sum(m => m.Valor);
+            return saldoPositivo - saldoNegativo;
+            
+
+        }
 
         public void preencherDGV(DataGridView dgv, string dgvDt)
         {
             DataTable dt = new DataTable();
             db = new AppDbContext();
-
+            
             try
             {
                 if (dgvDt == "Movimento")
                 {
-                    dgv.DataSource = db.Movimentos.Select(m => new
+                    decimal saldo;
+
+                    
+                    var ls = db.Movimentos.Select(m => new
                     {
                         m.Id,
                         m.Data,
                         m.Descricao,
+                        Cliente = m.IdCliente.Nome,
                         m.Valor,
                         m.Tipo,
-                        Cliente = m.IdCliente.Nome,
                         m.Marcacao,
+                        
                     }).ToList();
+                    dgv.DataSource = ls;
+                    DataGridViewTextBoxColumn coluna = new DataGridViewTextBoxColumn();
+                    coluna.HeaderText = "Saldo";
+                    coluna.Name = "SaldoCorrente";
+                    dgv.Columns.Add(coluna);
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        string cliente = row.Cells["Cliente"].Value.ToString();
+                        DateTime data = (DateTime)row.Cells["Data"].Value;
 
+                        decimal money = GetSaldoCorrente(cliente, data);
+                        row.Cells["SaldoCorrente"].Value = money;
+                       
+                        
+                    }
+                    
                 }
                 else if (dgvDt == "Cliente")
                 {

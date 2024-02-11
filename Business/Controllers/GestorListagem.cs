@@ -32,7 +32,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 // Estrutura
 
                 dgv.AllowUserToAddRows = false; // para contar linhas/registos
-                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+               // dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
                 dgv.RowHeadersVisible = false;
                 dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -96,6 +96,23 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 dgv.Columns[6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv.Columns[6].HeaderText = "Marcador";
+
+                // Saldo
+
+                dgv.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["SaldoCorrente"].Value.ToString()) < 0)
+                    {
+                        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Green;
+                    }
+                }
+
             }
             else if (dgvDt == "Cliente")
             {
@@ -374,27 +391,39 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 dgv.Columns[2].HeaderText = "Valor";
                 dgv.Columns[2].DefaultCellStyle.Format = "c"; // c -> currency
                 dgv.Columns[2].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("pt-PT");
+
+                
             }
         }
 
         public void ListarClientes(ComboBox cbx, DataGridView dgv)
         {
-            string dataText = cbx.SelectedText;
-
-            var ls = db.Movimentos.Select(m => new
+            string dt = cbx.SelectedText;
+            if (dt == "Todos")
             {
-                m.Id,
-                Cliente = m.IdCliente.Nome,
-                m.Valor,
-                m.Tipo,
-                m.Data,
-                m.Descricao,
-                m.Marcacao,
-            }); 
+                ls.preencherDGV(dgv, "Movimentos");
+            }else
+            {
+                var ls = db.Movimentos.Select(m => new
+                {
+                    m.Id,
+                    Cliente = m.IdCliente.Nome,
+                    m.Valor,
+                    m.Tipo,
+                    m.Data,
+                    m.Descricao,
+                    m.Marcacao,
+                }).Where(m => m.Cliente == dt).ToList();
+                dgv.DataSource = ls;
+            }
+
+           
         }
 
-        // * LISTAR CLIENTES * \\
-        // * LISTAR MOVIMENTOS CLIENTE * \\ 
+        public void ListarAteMes(ComboBox cbx, DataGridView dgv)
+        {
+
+        }
         // * COMPARAR MOVIMENTOS DE UM ANO PARA O OUTRO E MENSAIS * \\ 
 
     }

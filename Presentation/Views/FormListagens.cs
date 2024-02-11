@@ -33,8 +33,55 @@ namespace RegistoMovimentosSrJoaquim
 
         private void FormMovimentos_Load(object sender, EventArgs e)
         {
-           
+            ls.preencherCBX(cbxMes, "Mes");
+            ls.preencherCBX(cbxClienteLis, "Cliente");
+            ls.preencherDGV(dgvListagem, "Movimento");
+            pc.FormatarDGV(dgvListagem, "Movimento");
+
+
+            gbPeriodoTempo.Hide();
+            gbPeriodoTempo.Enabled = false;
         }
 
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            FormPrincipal fp = new FormPrincipal();
+            this.Hide();
+            fp.Show();
+        }
+
+        private void rbtTempoPreciso_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtTempoPreciso.Checked)
+            {
+                gbMes.Show();
+                gbMes.Enabled = true;
+            }
+            else
+            {
+                gbMes.Hide();
+                gbMes.Enabled = false;
+            }
+
+        }
+
+        private void rbtPeriodoTempo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtPeriodoTempo.Checked)
+            {
+                gbPeriodoTempo.Show();
+                gbPeriodoTempo.Enabled = true;
+            }
+            else
+            {
+                gbPeriodoTempo.Hide();
+                gbPeriodoTempo.Enabled = false;
+            }
+        }
+
+        private void cbxMes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

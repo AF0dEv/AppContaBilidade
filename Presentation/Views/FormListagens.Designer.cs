@@ -29,34 +29,35 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListagens));
-            dgvMovimento = new DataGridView();
+            dgvListagem = new DataGridView();
             label7 = new Label();
-            label8 = new Label();
-            dgvMvMarcados = new DataGridView();
-            label9 = new Label();
-            dgvMvLivres = new DataGridView();
-            label10 = new Label();
-            cbxCliente = new ComboBox();
             label11 = new Label();
-            cbxMes = new ComboBox();
             label12 = new Label();
-            label13 = new Label();
-            txtSaldo = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dgvMovimento).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMvMarcados).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMvLivres).BeginInit();
+            btnMaiorMil = new Button();
+            cbxClienteLis = new ComboBox();
+            label1 = new Label();
+            cbxMes = new ComboBox();
+            rbtTempoPreciso = new RadioButton();
+            rbtPeriodoTempo = new RadioButton();
+            gbMes = new GroupBox();
+            gbPeriodoTempo = new GroupBox();
+            dtpList1 = new MonthCalendar();
+            btnVoltarLis = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvListagem).BeginInit();
+            gbMes.SuspendLayout();
+            gbPeriodoTempo.SuspendLayout();
             SuspendLayout();
             // 
-            // dgvMovimento
+            // dgvListagem
             // 
-            dgvMovimento.BackgroundColor = SystemColors.ControlLight;
-            dgvMovimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMovimento.Cursor = Cursors.Hand;
-            dgvMovimento.Location = new Point(12, 38);
-            dgvMovimento.Name = "dgvMovimento";
-            dgvMovimento.RowHeadersWidth = 51;
-            dgvMovimento.Size = new Size(1014, 193);
-            dgvMovimento.TabIndex = 3;
+            dgvListagem.BackgroundColor = SystemColors.ControlLight;
+            dgvListagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListagem.Cursor = Cursors.Hand;
+            dgvListagem.Location = new Point(12, 38);
+            dgvListagem.Name = "dgvListagem";
+            dgvListagem.RowHeadersWidth = 51;
+            dgvListagem.Size = new Size(1014, 231);
+            dgvListagem.TabIndex = 3;
             // 
             // label7
             // 
@@ -69,81 +70,60 @@
             label7.TabIndex = 18;
             label7.Text = "MOVIMENTOS";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Black;
-            label8.Location = new Point(430, 277);
-            label8.Name = "label8";
-            label8.Size = new Size(130, 26);
-            label8.TabIndex = 19;
-            label8.Text = "MARCADOS";
-            // 
-            // dgvMvMarcados
-            // 
-            dgvMvMarcados.BackgroundColor = SystemColors.ControlLight;
-            dgvMvMarcados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMvMarcados.Cursor = Cursors.Hand;
-            dgvMvMarcados.Location = new Point(430, 307);
-            dgvMvMarcados.Name = "dgvMvMarcados";
-            dgvMvMarcados.RowHeadersWidth = 51;
-            dgvMvMarcados.Size = new Size(285, 187);
-            dgvMvMarcados.TabIndex = 21;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Black;
-            label9.Location = new Point(942, 277);
-            label9.Name = "label9";
-            label9.Size = new Size(84, 26);
-            label9.TabIndex = 22;
-            label9.Text = "LIVRES";
-            // 
-            // dgvMvLivres
-            // 
-            dgvMvLivres.BackgroundColor = SystemColors.ControlLight;
-            dgvMvLivres.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMvLivres.Cursor = Cursors.Hand;
-            dgvMvLivres.Location = new Point(721, 307);
-            dgvMvLivres.Name = "dgvMvLivres";
-            dgvMvLivres.RowHeadersWidth = 51;
-            dgvMvLivres.Size = new Size(305, 187);
-            dgvMvLivres.TabIndex = 23;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label10.Location = new Point(271, 381);
-            label10.Name = "label10";
-            label10.Size = new Size(24, 26);
-            label10.TabIndex = 32;
-            label10.Text = "€";
-            // 
-            // cbxCliente
-            // 
-            cbxCliente.Cursor = Cursors.IBeam;
-            cbxCliente.Font = new Font("Segoe UI", 12F);
-            cbxCliente.ForeColor = Color.Black;
-            cbxCliente.FormattingEnabled = true;
-            cbxCliente.Location = new Point(52, 381);
-            cbxCliente.Name = "cbxCliente";
-            cbxCliente.Size = new Size(151, 36);
-            cbxCliente.TabIndex = 31;
-            // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Black;
-            label11.Location = new Point(52, 332);
+            label11.Location = new Point(12, 279);
             label11.Name = "label11";
             label11.Size = new Size(99, 26);
             label11.TabIndex = 28;
             label11.Text = "CLIENTE";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
+            label12.Location = new Point(6, 48);
+            label12.Name = "label12";
+            label12.Size = new Size(57, 26);
+            label12.TabIndex = 29;
+            label12.Text = "MÊS";
+            // 
+            // btnMaiorMil
+            // 
+            btnMaiorMil.Cursor = Cursors.Hand;
+            btnMaiorMil.FlatStyle = FlatStyle.Popup;
+            btnMaiorMil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMaiorMil.Location = new Point(130, 356);
+            btnMaiorMil.Name = "btnMaiorMil";
+            btnMaiorMil.Size = new Size(113, 29);
+            btnMaiorMil.TabIndex = 32;
+            btnMaiorMil.Text = ">1000";
+            btnMaiorMil.UseVisualStyleBackColor = true;
+            // 
+            // cbxClienteLis
+            // 
+            cbxClienteLis.Cursor = Cursors.IBeam;
+            cbxClienteLis.Font = new Font("Segoe UI", 12F);
+            cbxClienteLis.ForeColor = Color.Black;
+            cbxClienteLis.FormattingEnabled = true;
+            cbxClienteLis.Location = new Point(130, 279);
+            cbxClienteLis.Name = "cbxClienteLis";
+            cbxClienteLis.Size = new Size(151, 36);
+            cbxClienteLis.TabIndex = 31;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(12, 359);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 26);
+            label1.TabIndex = 33;
+            label1.Text = "CLIENTES";
             // 
             // cbxMes
             // 
@@ -151,41 +131,75 @@
             cbxMes.Font = new Font("Segoe UI", 12F);
             cbxMes.ForeColor = Color.Black;
             cbxMes.FormattingEnabled = true;
-            cbxMes.Location = new Point(52, 461);
+            cbxMes.Location = new Point(69, 42);
             cbxMes.Name = "cbxMes";
             cbxMes.Size = new Size(151, 36);
             cbxMes.TabIndex = 26;
+            cbxMes.SelectedIndexChanged += cbxMes_SelectedIndexChanged;
             // 
-            // label12
+            // rbtTempoPreciso
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label12.Location = new Point(52, 432);
-            label12.Name = "label12";
-            label12.Size = new Size(57, 26);
-            label12.TabIndex = 29;
-            label12.Text = "MÊS";
+            rbtTempoPreciso.AutoSize = true;
+            rbtTempoPreciso.Checked = true;
+            rbtTempoPreciso.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
+            rbtTempoPreciso.Location = new Point(424, 277);
+            rbtTempoPreciso.Name = "rbtTempoPreciso";
+            rbtTempoPreciso.Size = new Size(78, 30);
+            rbtTempoPreciso.TabIndex = 35;
+            rbtTempoPreciso.TabStop = true;
+            rbtTempoPreciso.Text = "MÊS";
+            rbtTempoPreciso.UseVisualStyleBackColor = true;
+            rbtTempoPreciso.CheckedChanged += rbtTempoPreciso_CheckedChanged;
             // 
-            // label13
+            // rbtPeriodoTempo
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label13.Location = new Point(226, 307);
-            label13.Name = "label13";
-            label13.Size = new Size(81, 26);
-            label13.TabIndex = 30;
-            label13.Text = "SALDO";
+            rbtPeriodoTempo.AutoSize = true;
+            rbtPeriodoTempo.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
+            rbtPeriodoTempo.Location = new Point(748, 275);
+            rbtPeriodoTempo.Name = "rbtPeriodoTempo";
+            rbtPeriodoTempo.Size = new Size(205, 30);
+            rbtPeriodoTempo.TabIndex = 36;
+            rbtPeriodoTempo.Text = "PERIODO TEMPO";
+            rbtPeriodoTempo.UseVisualStyleBackColor = true;
+            rbtPeriodoTempo.CheckedChanged += rbtPeriodoTempo_CheckedChanged;
             // 
-            // txtSaldo
+            // gbMes
             // 
-            txtSaldo.Cursor = Cursors.IBeam;
-            txtSaldo.Font = new Font("Segoe UI", 12F);
-            txtSaldo.ForeColor = Color.Black;
-            txtSaldo.Location = new Point(215, 344);
-            txtSaldo.Name = "txtSaldo";
-            txtSaldo.PlaceholderText = "000.000.00";
-            txtSaldo.Size = new Size(108, 34);
-            txtSaldo.TabIndex = 27;
+            gbMes.Controls.Add(label12);
+            gbMes.Controls.Add(cbxMes);
+            gbMes.Location = new Point(349, 336);
+            gbMes.Name = "gbMes";
+            gbMes.Size = new Size(250, 125);
+            gbMes.TabIndex = 37;
+            gbMes.TabStop = false;
+            // 
+            // gbPeriodoTempo
+            // 
+            gbPeriodoTempo.Controls.Add(dtpList1);
+            gbPeriodoTempo.Location = new Point(680, 311);
+            gbPeriodoTempo.Name = "gbPeriodoTempo";
+            gbPeriodoTempo.Size = new Size(346, 217);
+            gbPeriodoTempo.TabIndex = 38;
+            gbPeriodoTempo.TabStop = false;
+            // 
+            // dtpList1
+            // 
+            dtpList1.Location = new Point(38, 10);
+            dtpList1.Name = "dtpList1";
+            dtpList1.TabIndex = 0;
+            // 
+            // btnVoltarLis
+            // 
+            btnVoltarLis.Cursor = Cursors.Hand;
+            btnVoltarLis.FlatStyle = FlatStyle.Popup;
+            btnVoltarLis.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVoltarLis.Location = new Point(12, 499);
+            btnVoltarLis.Name = "btnVoltarLis";
+            btnVoltarLis.Size = new Size(113, 29);
+            btnVoltarLis.TabIndex = 39;
+            btnVoltarLis.Text = "VOLTAR";
+            btnVoltarLis.UseVisualStyleBackColor = true;
+            btnVoltarLis.Click += btnVoltar_Click;
             // 
             // FormListagens
             // 
@@ -193,44 +207,44 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1038, 540);
-            Controls.Add(label10);
-            Controls.Add(cbxCliente);
-            Controls.Add(label11);
-            Controls.Add(cbxMes);
-            Controls.Add(label12);
-            Controls.Add(label13);
-            Controls.Add(txtSaldo);
-            Controls.Add(dgvMvLivres);
-            Controls.Add(label9);
-            Controls.Add(dgvMvMarcados);
-            Controls.Add(label8);
+            Controls.Add(btnVoltarLis);
+            Controls.Add(gbPeriodoTempo);
+            Controls.Add(gbMes);
+            Controls.Add(rbtPeriodoTempo);
+            Controls.Add(rbtTempoPreciso);
+            Controls.Add(label1);
+            Controls.Add(cbxClienteLis);
             Controls.Add(label7);
-            Controls.Add(dgvMovimento);
+            Controls.Add(btnMaiorMil);
+            Controls.Add(dgvListagem);
+            Controls.Add(label11);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormListagens";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LISTAGENS";
             Load += FormMovimentos_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvMovimento).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMvMarcados).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvMvLivres).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListagem).EndInit();
+            gbMes.ResumeLayout(false);
+            gbMes.PerformLayout();
+            gbPeriodoTempo.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private DataGridView dgvMovimento;
+        private DataGridView dgvListagem;
         private Label label7;
-        private Label label8;
-        private DataGridView dgvMvMarcados;
-        private Label label9;
-        private DataGridView dgvMvLivres;
-        private Label label10;
-        private ComboBox cbxCliente;
         private Label label11;
-        private ComboBox cbxMes;
         private Label label12;
-        private Label label13;
-        private TextBox txtSaldo;
+        private Button btnMaiorMil;
+        private ComboBox cbxClienteLis;
+        private Label label1;
+        private ComboBox cbxMes;
+        private RadioButton rbtTempoPreciso;
+        private RadioButton rbtPeriodoTempo;
+        private GroupBox gbMes;
+        private GroupBox gbPeriodoTempo;
+        private MonthCalendar dtpList1;
+        private Button btnVoltarLis;
     }
 }

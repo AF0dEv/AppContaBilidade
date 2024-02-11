@@ -30,6 +30,18 @@ namespace RegistoMovimentosSrJoaquim
             pc.FormatarDGV(dgvMvLivres, "Livres");
         }
 
+        private void btnMnListagem_Click(object sender, EventArgs e)
+        {
+            FormListagens fl = new FormListagens();
+            fl.Show();
+            this.Hide();
+        }
 
+        private void btnMnClientes_Click(object sender, EventArgs e)
+        {
+            FormCliente fc = new FormCliente();
+            fc.Show();
+            this.Hide();
+        }
     }
 }

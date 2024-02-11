@@ -62,11 +62,9 @@
             gbxCriarCliente.Controls.Add(label1);
             gbxCriarCliente.Controls.Add(txtNIF);
             gbxCriarCliente.Controls.Add(label2);
-            gbxCriarCliente.Location = new Point(10, 9);
-            gbxCriarCliente.Margin = new Padding(3, 2, 3, 2);
+            gbxCriarCliente.Location = new Point(11, 12);
             gbxCriarCliente.Name = "gbxCriarCliente";
-            gbxCriarCliente.Padding = new Padding(3, 2, 3, 2);
-            gbxCriarCliente.Size = new Size(192, 387);
+            gbxCriarCliente.Size = new Size(219, 516);
             gbxCriarCliente.TabIndex = 0;
             gbxCriarCliente.TabStop = false;
             gbxCriarCliente.Text = "CLIENTE";
@@ -75,10 +73,10 @@
             // 
             btnVoltar.Cursor = Cursors.Hand;
             btnVoltar.FlatStyle = FlatStyle.Popup;
-            btnVoltar.Location = new Point(122, 361);
-            btnVoltar.Margin = new Padding(3, 2, 3, 2);
+            btnVoltar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVoltar.Location = new Point(125, 481);
             btnVoltar.Name = "btnVoltar";
-            btnVoltar.Size = new Size(62, 22);
+            btnVoltar.Size = new Size(85, 29);
             btnVoltar.TabIndex = 21;
             btnVoltar.Text = "VOLTAR";
             btnVoltar.UseVisualStyleBackColor = true;
@@ -89,11 +87,10 @@
             txtNome.Cursor = Cursors.IBeam;
             txtNome.Font = new Font("Segoe UI", 12F);
             txtNome.ForeColor = SystemColors.WindowText;
-            txtNome.Location = new Point(5, 130);
-            txtNome.Margin = new Padding(3, 2, 3, 2);
+            txtNome.Location = new Point(6, 173);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "ESCREVA AQUI...";
-            txtNome.Size = new Size(136, 29);
+            txtNome.Size = new Size(155, 34);
             txtNome.TabIndex = 15;
             // 
             // txtEstado
@@ -101,21 +98,19 @@
             txtEstado.Cursor = Cursors.IBeam;
             txtEstado.Font = new Font("Segoe UI", 12F);
             txtEstado.ForeColor = SystemColors.WindowText;
-            txtEstado.Location = new Point(5, 216);
-            txtEstado.Margin = new Padding(3, 2, 3, 2);
+            txtEstado.Location = new Point(6, 288);
             txtEstado.Name = "txtEstado";
             txtEstado.PlaceholderText = "ESCREVA AQUI...";
-            txtEstado.Size = new Size(136, 29);
+            txtEstado.Size = new Size(155, 34);
             txtEstado.TabIndex = 14;
             // 
             // btnCriarClix
             // 
             btnCriarClix.Cursor = Cursors.Hand;
             btnCriarClix.FlatStyle = FlatStyle.Popup;
-            btnCriarClix.Location = new Point(5, 361);
-            btnCriarClix.Margin = new Padding(3, 2, 3, 2);
+            btnCriarClix.Location = new Point(6, 481);
             btnCriarClix.Name = "btnCriarClix";
-            btnCriarClix.Size = new Size(99, 22);
+            btnCriarClix.Size = new Size(113, 29);
             btnCriarClix.TabIndex = 13;
             btnCriarClix.Text = "CRIAR";
             btnCriarClix.UseVisualStyleBackColor = true;
@@ -126,9 +121,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(5, 194);
+            label3.Location = new Point(6, 259);
             label3.Name = "label3";
-            label3.Size = new Size(76, 21);
+            label3.Size = new Size(94, 26);
             label3.TabIndex = 11;
             label3.Text = "ESTADO";
             // 
@@ -137,9 +132,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(5, 109);
+            label1.Location = new Point(6, 145);
             label1.Name = "label1";
-            label1.Size = new Size(60, 21);
+            label1.Size = new Size(75, 26);
             label1.TabIndex = 9;
             label1.Text = "NOME";
             // 
@@ -148,11 +143,10 @@
             txtNIF.Cursor = Cursors.IBeam;
             txtNIF.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNIF.ForeColor = SystemColors.WindowText;
-            txtNIF.Location = new Point(5, 52);
-            txtNIF.Margin = new Padding(3, 2, 3, 2);
+            txtNIF.Location = new Point(6, 69);
             txtNIF.Name = "txtNIF";
             txtNIF.PlaceholderText = "ESCREVA AQUI...";
-            txtNIF.Size = new Size(136, 29);
+            txtNIF.Size = new Size(155, 34);
             txtNIF.TabIndex = 8;
             // 
             // label2
@@ -160,9 +154,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(5, 30);
+            label2.Location = new Point(6, 40);
             label2.Name = "label2";
-            label2.Size = new Size(38, 21);
+            label2.Size = new Size(47, 26);
             label2.TabIndex = 7;
             label2.Text = "NIF";
             // 
@@ -171,11 +165,10 @@
             dgvCliente.BackgroundColor = SystemColors.ControlLight;
             dgvCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCliente.Cursor = Cursors.Hand;
-            dgvCliente.Location = new Point(207, 17);
-            dgvCliente.Margin = new Padding(3, 2, 3, 2);
+            dgvCliente.Location = new Point(237, 23);
             dgvCliente.Name = "dgvCliente";
             dgvCliente.RowHeadersWidth = 51;
-            dgvCliente.Size = new Size(426, 352);
+            dgvCliente.Size = new Size(487, 469);
             dgvCliente.TabIndex = 2;
             // 
             // dgvClienteAtivo
@@ -183,11 +176,10 @@
             dgvClienteAtivo.BackgroundColor = SystemColors.ControlLight;
             dgvClienteAtivo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClienteAtivo.Cursor = Cursors.Hand;
-            dgvClienteAtivo.Location = new Point(639, 39);
-            dgvClienteAtivo.Margin = new Padding(3, 2, 3, 2);
+            dgvClienteAtivo.Location = new Point(730, 52);
             dgvClienteAtivo.Name = "dgvClienteAtivo";
             dgvClienteAtivo.RowHeadersWidth = 51;
-            dgvClienteAtivo.Size = new Size(259, 130);
+            dgvClienteAtivo.Size = new Size(296, 173);
             dgvClienteAtivo.TabIndex = 3;
             // 
             // dgvClientePendente
@@ -195,20 +187,19 @@
             dgvClientePendente.BackgroundColor = SystemColors.ControlLight;
             dgvClientePendente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientePendente.Cursor = Cursors.Hand;
-            dgvClientePendente.Location = new Point(639, 244);
-            dgvClientePendente.Margin = new Padding(3, 2, 3, 2);
+            dgvClientePendente.Location = new Point(730, 325);
             dgvClientePendente.Name = "dgvClientePendente";
             dgvClientePendente.RowHeadersWidth = 51;
-            dgvClientePendente.Size = new Size(259, 125);
+            dgvClientePendente.Size = new Size(296, 167);
             dgvClientePendente.TabIndex = 4;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label4.Location = new Point(639, 17);
+            label4.Location = new Point(730, 23);
             label4.Name = "label4";
-            label4.Size = new Size(130, 21);
+            label4.Size = new Size(161, 26);
             label4.TabIndex = 5;
             label4.Text = "ESTADO ATIVO";
             // 
@@ -216,9 +207,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label5.Location = new Point(639, 223);
+            label5.Location = new Point(730, 297);
             label5.Name = "label5";
-            label5.Size = new Size(171, 21);
+            label5.Size = new Size(213, 26);
             label5.TabIndex = 6;
             label5.Text = "ESTADO PENDENTE";
             // 
@@ -226,10 +217,9 @@
             // 
             btnAtualizarEP.Cursor = Cursors.Hand;
             btnAtualizarEP.FlatStyle = FlatStyle.Popup;
-            btnAtualizarEP.Location = new Point(799, 374);
-            btnAtualizarEP.Margin = new Padding(3, 2, 3, 2);
+            btnAtualizarEP.Location = new Point(913, 499);
             btnAtualizarEP.Name = "btnAtualizarEP";
-            btnAtualizarEP.Size = new Size(99, 22);
+            btnAtualizarEP.Size = new Size(113, 29);
             btnAtualizarEP.TabIndex = 14;
             btnAtualizarEP.Text = "ATUALIZAR";
             btnAtualizarEP.UseVisualStyleBackColor = true;
@@ -238,10 +228,9 @@
             // 
             btnAtualizarEA.Cursor = Cursors.Hand;
             btnAtualizarEA.FlatStyle = FlatStyle.Popup;
-            btnAtualizarEA.Location = new Point(799, 174);
-            btnAtualizarEA.Margin = new Padding(3, 2, 3, 2);
+            btnAtualizarEA.Location = new Point(913, 232);
             btnAtualizarEA.Name = "btnAtualizarEA";
-            btnAtualizarEA.Size = new Size(99, 22);
+            btnAtualizarEA.Size = new Size(113, 29);
             btnAtualizarEA.TabIndex = 15;
             btnAtualizarEA.Text = "ATUALIZAR";
             btnAtualizarEA.UseVisualStyleBackColor = true;
@@ -250,20 +239,19 @@
             // 
             btnAtualizarCli.Cursor = Cursors.Hand;
             btnAtualizarCli.FlatStyle = FlatStyle.Popup;
-            btnAtualizarCli.Location = new Point(535, 374);
-            btnAtualizarCli.Margin = new Padding(3, 2, 3, 2);
+            btnAtualizarCli.Location = new Point(611, 499);
             btnAtualizarCli.Name = "btnAtualizarCli";
-            btnAtualizarCli.Size = new Size(99, 22);
+            btnAtualizarCli.Size = new Size(113, 29);
             btnAtualizarCli.TabIndex = 16;
             btnAtualizarCli.Text = "ATUALIZAR";
             btnAtualizarCli.UseVisualStyleBackColor = true;
             // 
             // FormCliente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
-            ClientSize = new Size(908, 405);
+            ClientSize = new Size(1038, 540);
             Controls.Add(btnAtualizarCli);
             Controls.Add(btnAtualizarEA);
             Controls.Add(btnAtualizarEP);
@@ -274,7 +262,6 @@
             Controls.Add(dgvCliente);
             Controls.Add(gbxCriarCliente);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CLIENTE";

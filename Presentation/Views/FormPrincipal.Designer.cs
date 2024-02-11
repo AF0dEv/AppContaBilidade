@@ -43,7 +43,7 @@
             label1 = new Label();
             cbxTipo = new ComboBox();
             label5 = new Label();
-            dtMovimento = new DateTimePicker();
+            dtpMovimento = new DateTimePicker();
             label4 = new Label();
             cbxClienteMov = new ComboBox();
             btnCriarClix = new Button();
@@ -76,6 +76,7 @@
             btnMnListagem.Name = "btnMnListagem";
             btnMnListagem.Size = new Size(123, 32);
             btnMnListagem.Text = "LISTAGENS";
+            btnMnListagem.Click += btnMnListagem_Click;
             // 
             // btnMnClientes
             // 
@@ -84,6 +85,7 @@
             btnMnClientes.Name = "btnMnClientes";
             btnMnClientes.Size = new Size(108, 32);
             btnMnClientes.Text = "CLIENTES";
+            btnMnClientes.Click += btnMnClientes_Click;
             // 
             // mnForms
             // 
@@ -93,7 +95,7 @@
             mnForms.Items.AddRange(new ToolStripItem[] { btnMnListagem, btnMnClientes });
             mnForms.Location = new Point(6, 503);
             mnForms.Name = "mnForms";
-            mnForms.Size = new Size(239, 36);
+            mnForms.Size = new Size(389, 36);
             mnForms.TabIndex = 21;
             // 
             // dgvPrincipal
@@ -169,7 +171,7 @@
             gbxCriarCliente.Controls.Add(label1);
             gbxCriarCliente.Controls.Add(cbxTipo);
             gbxCriarCliente.Controls.Add(label5);
-            gbxCriarCliente.Controls.Add(dtMovimento);
+            gbxCriarCliente.Controls.Add(dtpMovimento);
             gbxCriarCliente.Controls.Add(label4);
             gbxCriarCliente.Controls.Add(cbxClienteMov);
             gbxCriarCliente.Controls.Add(btnCriarClix);
@@ -219,17 +221,17 @@
             label5.TabIndex = 17;
             label5.Text = "DESCRIÇÃO";
             // 
-            // dtMovimento
+            // dtpMovimento
             // 
-            dtMovimento.AllowDrop = true;
-            dtMovimento.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtMovimento.Location = new Point(6, 69);
-            dtMovimento.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
-            dtMovimento.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
-            dtMovimento.Name = "dtMovimento";
-            dtMovimento.Size = new Size(217, 27);
-            dtMovimento.TabIndex = 16;
-            dtMovimento.Value = new DateTime(2024, 1, 29, 16, 6, 0, 0);
+            dtpMovimento.AllowDrop = true;
+            dtpMovimento.CalendarFont = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpMovimento.Location = new Point(6, 69);
+            dtpMovimento.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dtpMovimento.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            dtpMovimento.Name = "dtpMovimento";
+            dtpMovimento.Size = new Size(217, 27);
+            dtpMovimento.TabIndex = 16;
+            dtpMovimento.Value = new DateTime(2024, 1, 29, 16, 6, 0, 0);
             // 
             // label4
             // 
@@ -377,7 +379,7 @@
         private Label label1;
         private ComboBox cbxTipo;
         private Label label5;
-        private DateTimePicker dtMovimento;
+        private DateTimePicker dtpMovimento;
         private ComboBox cbxClienteMov;
         private Button btnCriarClix;
         private TextBox txtMarcacao;
