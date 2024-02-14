@@ -34,7 +34,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                 {
                     db = new AppDbContext();
                     List<string> ls = new List<string>();
-                    ls = db.Clientes.Select(m =>  m.Nome ).ToList();
+                    ls = db.Clientes.Select(m => m.Nome).ToList();
                     ls.Insert(0, "Todos");
                     cbx.DataSource = ls;
                    // cbx.ValueMember = "Id";
@@ -105,7 +105,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
             }
         }
 
-        public static decimal GetSaldoCorrente(string cliente, DateTime data)
+        public decimal GetSaldoCorrente(string cliente, DateTime data)
         {
             AppDbContext db = new AppDbContext();
             var saldoPositivo = db.Movimentos.Where(m => m.IdCliente.Nome == cliente && m.Tipo == 'C' && m.Data <= data).Sum(m => m.Valor);
@@ -155,6 +155,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     }
                     
                 }
+
+
+
                 else if (dgvDt == "Cliente")
                 {
                     dgv.DataSource = db.Clientes.Select(m => new

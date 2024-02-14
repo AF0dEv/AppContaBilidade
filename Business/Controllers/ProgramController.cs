@@ -48,5 +48,10 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             gl.FormatarDGV(dgv, dgvDt);
         }
+
+        public void ListarClienteSelecionado(ComboBox cbx, DataGridView dgv)
+        {
+            gl.ListarClienteSelecionado(cbx, dgv);
+        }
     }
 }

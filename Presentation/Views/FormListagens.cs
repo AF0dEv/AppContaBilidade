@@ -35,8 +35,7 @@ namespace RegistoMovimentosSrJoaquim
         {
             ls.preencherCBX(cbxMes, "Mes");
             ls.preencherCBX(cbxClienteLis, "Cliente");
-            ls.preencherDGV(dgvListagem, "Movimento");
-            pc.FormatarDGV(dgvListagem, "Movimento");
+            //pc.FormatarDGV(dgvListagem, "Movimento");
 
 
             gbPeriodoTempo.Hide();
@@ -82,6 +81,12 @@ namespace RegistoMovimentosSrJoaquim
         private void cbxMes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbxClienteLis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           pc.ListarClienteSelecionado(cbxClienteLis, dgvListagem);
+           
         }
     }
 }
