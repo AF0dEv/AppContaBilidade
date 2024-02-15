@@ -9,7 +9,12 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
     internal class Cliente
     {
         // Construtor
-        public Cliente() { }
+        public Cliente(int nif, string nome, string estado) 
+        {
+            this.nif = nif;
+            this.nome = nome;
+            this.estado = estado;
+        }
 
         // Propriedades
 
@@ -19,28 +24,10 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
         private string estado;
 
         // Métodos
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int Id { get; set; }
 
-        public int NIF
-        {
-            get { return nif; }
-            set { nif = value; }
-        }
-
-        public string Nome
-        {
-            get { return nome; }
-            set { nome = value; }
-        }
-
-        public string? Estado
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
+        public int NIF { get; set; }
+        public string Nome { get; set; }
+        public string? Estado { get; set; }
     }
 }

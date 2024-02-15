@@ -15,53 +15,68 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
 
         // ============== PROPERTIES ===============
-        private AppDbContext db;
+        private AppDbContext db = AppDbContext.getInstance();
+        Cliente? c = null;
 
         // ============= MÉTODOS ================
 
-        public void addCliente(Cliente c) {
+        public void addCliente(int nif, string nome, string estado) {
             try
             {
-                db = new AppDbContext();
-                db.Clientes.Add(c);
-                db.SaveChanges();
+                c = new Cliente(nif, nome, estado);
 
-            }catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }finally 
-            { 
-                db.Dispose();
-            }  
+                if (db.Clientes is not null && c is not null)
+                {
+                    db.Clientes.Add(c);
+                    db.SaveChanges();
+                }
+                c = null;
+            }catch (Exception ex) { MessageBox.Show(ex.Message); } 
         }
-        public void updateCliente(Cliente c)
+
+
+        public void updateCliente(string idCliente, int nif, string nome, string estado)
         {
+            c = null;
+
+            if (db.Clientes is not null)
+            {
+                c = db.Clientes.FirstOrDefault(m => m.Id == Convert.ToInt16(idCliente);
+
+                if (c is not null)
+                {
+                    c.Nome = nome;
+                    c.NIF = nif;
+                    c.Estado = estado;
+                }
+            }
+
             try
             {
-                db = new AppDbContext();
-                db.Clientes.Update(c);
                 db.SaveChanges();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { db.Dispose(); }
+
         }
         
-        public void deleteCliente(Cliente c)
+        public void deleteCliente(string idCliente)
         {
-            try
+            c = null;
+
+            if (db.Clientes is not null)
             {
-                db = new AppDbContext();
-                db.Clientes.Remove(c);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { db.Dispose(); }
+                c = db.Clientes.Where(m => m.Id == Convert.ToInt16(idCliente)).FirstOrDefault();
+
+                if (c is not null)
+                {
+                    db.Clientes.Remove(c);
+                    db.SaveChanges();
+                    c = null;
+                }
+            } 
         }
 
 

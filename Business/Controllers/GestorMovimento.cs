@@ -15,52 +15,66 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         public GestorMovimento() { }
 
         // ============== PROPERTIES ===============
-        private AppDbContext db;
+        private AppDbContext db = AppDbContext.getInstance();
+        Movimento? mv = null;
 
         // ============= MÉTODOS ================
-        public void addMovimento(Movimento mv)
+        public void addMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
         {
-            try
+            mv = new Movimento(data, descricao, valor, marcacao, Idcliente);
+
+            if (db.Movimentos is not null )
             {
-                db = new AppDbContext();
                 db.Movimentos.Add(mv);
                 db.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { db.Dispose(); }
+
+            mv = null;
         }
 
-        public void updateMovimento(Movimento mv)
+        public void updateMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
         {
+            mv = null;
+
+            if(db.Movimentos is not null && mv is not null )
+            {
+                mv = db.Movimentos.FirstOrDefault(m => m.Id == Convert.ToInt16(Idcliente));
+
+                if ( mv is not null)
+                {
+                    mv.Data = data;
+                    mv.Descricao = descricao;
+                    mv.Valor = valor;
+                    mv.Marcacao = marcacao;
+                    mv.ClienteId = Idcliente;
+                }
+            }
+
+
             try
             {
-                db = new AppDbContext();
-                db.Movimentos.Update(mv);
                 db.SaveChanges();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { db.Dispose(); }
         }
 
-        public void deleteMovimento(Movimento mv)
+        public void deleteMovimento(int idMovimento)
         {
-            try
+            mv = null;
+
+            if (db.Movimentos is not null)
             {
-                db = new AppDbContext();
-                db.Movimentos.Remove(mv);
-                db.SaveChanges();
+                mv = db.Movimentos.Where(m => m.Id == Convert.ToInt16(idMovimento)).FirstOrDefault();
+
+                if ( mv is not null)
+                {
+                    db.Movimentos.Remove(mv);
+                    db.SaveChanges();
+                    mv = null;
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { db.Dispose(); }
-        }
     }
 }

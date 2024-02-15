@@ -3,9 +3,13 @@
     internal class Movimento
     {
         // Construtor
-        public Movimento()
+        public Movimento(DateTime data, string descricao, int valor, string marcacao, int clienteId)
         {
-
+            this.data = data;
+            this.descricao = descricao;
+            this.valor = valor;
+            this.marcacao = marcacao;
+            this.ClienteId = clienteId;
         }
 
         // Propriedades
@@ -16,51 +20,24 @@
         private int valor;
         private char tipo;
         private string marcacao;
-        private Cliente cliente;
+        private Cliente cliente = null!;
 
 
         // Métodos
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public int Id { get; set; }
+        
 
-        public DateTime Data
-        {
-            get { return data; }
-            set { data = value; }
-        }
+        public DateTime Data { get; set; }
 
-        public string? Descricao
-        {
-            get { return descricao; }
-            set { descricao = value; }
-        }
+        public string? Descricao { get; set; }
+        public int Valor { get; set; }
+        public char Tipo { get; set; }
 
-        public int Valor
-        {
-            get { return valor; }
-            set { valor = value; }
-        }
+        public string? Marcacao { get; set; }
 
-        public char Tipo
-        {
-            get { return tipo; }
-            set { tipo = value; }
-        }
+        public int ClienteId { get; set; }
 
+        public Cliente Cliente { get; set; }
 
-        public string? Marcacao
-        {
-            get { return marcacao; }
-            set { marcacao = value; }
-        }
-
-        public Cliente IdCliente
-        {
-            get { return cliente; }
-            set { cliente = value; }
-        }
     }
 }

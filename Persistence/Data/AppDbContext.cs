@@ -14,6 +14,14 @@ namespace RegistoMovimentosSrJoaquim.Persistence.Data
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Movimento>? Movimentos { get; set; }
 
+        private static AppDbContext? instance = null;
+        public static AppDbContext getInstance()
+        {
+            if (instance == null)
+                instance = new AppDbContext();
+
+            return instance;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
