@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using RegistoMovimentosSrJoaquim.Business.Controllers;
 using RegistoMovimentosSrJoaquim.Persistence.Data;
 using System;
 using System.Collections;
@@ -14,41 +16,19 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
     {
         // =========== CONSTRUTOR ================
         public Listagem() { }
-
-
         // =========== PROPERTIES ==================
+        private AppDbContext db = AppDbContext.getInstancia();
+        // ====================================== MÉTODOS ======================================
 
-        private AppDbContext db = AppDbContext.getInstance();
-        Movimento? mv = null;
-        Cliente? c = null;
-
-        // =========== MÉTODOS =====================
-        
-
-        
-        // ================================== PREENCHER CBX ====================================
-
-        public decimal GetSaldoCorrente(string cliente, DateTime data)
+        public static decimal GetSaldoCorrente(string nomeCliente, DateTime data)
         {
             AppDbContext db = new AppDbContext();
-            var saldoPositivo = db.Movimentos.Where(m => m.IdCliente.Nome == cliente && m.Tipo == 'C' && m.Data <= data).Sum(m => m.Valor);
-            var saldoNegativo = db.Movimentos.Where(m => m.IdCliente.Nome == cliente && m.Tipo == 'D' && m.Data <= data).Sum(m => m.Valor);
+            decimal saldoPositivo = db.Movimentos.Where(m => m.Cliente.Nome == nomeCliente && m.Tipo == 'C' && m.Data <= data).Sum(m => m.Valor);
+            decimal saldoNegativo = db.Movimentos.Where(m => m.Cliente.Nome == nomeCliente && m.Tipo == 'D' && m.Data <= data).Sum(m => m.Valor);
             return saldoPositivo - saldoNegativo;
-            
-
         }
 
-        public List<Cliente>? PreencherCbxClientes()
-        {
-            List<Cliente>? listaClientes = null;
-
-            if (db.Clientes is not null)
-            {
-                listaClientes = [.. db.Clientes];
-            }
-
-            return listaClientes;
-        }
+        // ================================== PREENCHER CBX ====================================
 
         public void PreencherCbxTipos(ComboBox cbx)
         {
@@ -70,7 +50,6 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                 MessageBox.Show(ex.ToString());
             }
         }
-
         public void PreencherCbxMeses(ComboBox cbx) 
         {
             try
@@ -104,14 +83,46 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
             }
         }
 
-        public List<ListaMovimento>? PreencherDgvMovimentos()
+        public void PreencherCbxClientesMov(ComboBox cbx)
         {
-            List<ListaMovimento>? listaMovimentos = null;
+            cbx.DataSource = PreencherClientes();
+            cbx.DisplayMember = "Nome";
+            cbx.ValueMember = "Id";
+        }
+        public void PreencherCbxClientesListagem(ComboBox cbx)
+        {
+            List<ListaClientes>? listaClientes = PreencherClientes();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id", typeof(int));
+            dt.Columns.Add("Nome", typeof(string));
+            dt.Rows.Add(00, "Todos");
+            foreach (ListaClientes lc in listaClientes) 
+            {
+                DataRow row = dt.NewRow();
+                row["Id"] = lc.Id;
+                row["Nome"] = lc.Nome;
+                dt.Rows.Add(row);
+            }
+            cbx.DataSource = dt;
+            cbx.DisplayMember = "Nome";
+            cbx.ValueMember = "Id";
+
+        }
+
+        // ================================== PREENCHER DGV ====================================
+    
+        public List<ListaClientes>? PreencherDgvClientes()
+        {
+            return PreencherClientes();
+        }
+        public List<ListaMovimentos>? PreencherDgvMovimentos()
+        {
+            List<ListaMovimentos>? listaMovimentos = null;
 
             if (db.Movimentos is not null)
             {
-                listaMovimentos = db.Movimentos.Select(m =>
-                new ListaMovimento
+                listaMovimentos = db.Movimentos.Include(m => m.Cliente).Select(m =>
+                new ListaMovimentos
                 {
 
                     Id = m.Id,
@@ -122,138 +133,235 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     Marcacao = m.Marcacao,
                     Cliente = m.Cliente.Nome,
                     ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
 
                 }).ToList();
             }
 
             return listaMovimentos;
         }
-
-        public List<ListaMovimento>? PreencherDgvMarcados()
+        public List<ListaMovimentos>? PreencherDgvMarcados()
         {
-            List<ListaMovimento>? listaMovimentos = null;
+            List<ListaMovimentos>? listaMovimentos = null;
 
-            if (db.)
+            if (db.Movimentos is not null)
             {
+                listaMovimentos = db.Movimentos.Select(m =>
+                new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo= m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
 
+                }).Where(m => m.Marcacao != null).ToList();
             }
+
+            return listaMovimentos;
+        }
+        public List<ListaMovimentos>? PreencherDgvLivres()
+        {
+            List<ListaMovimentos>? listaMovimentos = null;
+
+            if (db.Movimentos is not null)
+            {
+                listaMovimentos = db.Movimentos.Select(m =>
+                new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+
+                }).Where(m => m.Marcacao == null).ToList();
+            }
+
+            return listaMovimentos;
+        }
+        public List<ListaClientes>? PreencherDgvEstadoPendente()
+        {
+            List<ListaClientes>? listaClientes = null;
+
+            if (db.Clientes is not null)
+            {
+                listaClientes = db.Clientes.Select(m =>
+                new ListaClientes
+                {
+                    Id = m.Id,
+                    NIF = m.NIF,
+                    Nome = m.Nome,
+                    Estado = m.Estado,
+                }).Where(m => m.Estado == null || m.Estado == "").ToList();
+            }
+
+            return listaClientes;
+        }
+        public List<ListaClientes>? PreencherDgvEstadoAtivo()
+        {
+            List<ListaClientes>? listaClientes = null;
+
+            if (db.Clientes is not null)
+            {
+                listaClientes = db.Clientes.Select(m =>
+                new ListaClientes
+                {
+                    Id = m.Id,
+                    NIF = m.NIF,
+                    Nome = m.Nome,
+                    Estado = m.Estado,
+
+                }).Where(m => m.Estado != null && m.Estado != "").ToList();
+            }
+
+            return listaClientes;
+        }
+        public List<ListaMovimentos>? PreencherDgvEntradas()
+        {
+            List<ListaMovimentos>? listaMovimentos = null;
+
+            if (db.Movimentos is not null)
+            {
+                listaMovimentos = db.Movimentos.Select(m =>
+                new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+
+                }).Where(m => m.Tipo == 'C').ToList();
+            }
+
+            return listaMovimentos;
+        }
+        public List<ListaMovimentos>? PreencherDgvSaidas()
+        {
+            List<ListaMovimentos>? listaMovimentos = null;
+
+            if (db.Movimentos is not null)
+            {
+                listaMovimentos = db.Movimentos.Select(m =>
+                new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+
+                }).Where(m => m.Tipo == 'D').ToList();
+            }
+
+            return listaMovimentos;
         }
 
+        // ================================== LISTAGENS ====================================
 
-        public void preencherDGV(DataGridView dgv, string dgvDt)
+        public List<ListaMovimentos>? ListarMovimentosClienteSelecionado(string ClienteId)
         {
-            DataTable dt = new DataTable();
-            db = new AppDbContext();
-            
-            try
+            List<ListaMovimentos>? listaMovimentos = null;
+
+            if (db.Movimentos is not null)
             {
-                if (dgvDt == "Movimento")
+                listaMovimentos = db.Movimentos.Where(x => x.ClienteId == Convert.ToInt16(ClienteId)).
+                Select(m => new ListaMovimentos
                 {
-                    decimal saldo;
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
 
-                    
-                    var ls = db.Movimentos.Select(m => new
-                    {
-                        m.Id,
-                        m.Data,
-                        m.Descricao,
-                        Cliente = m.IdCliente.Nome,
-                        m.Valor,
-                        m.Tipo,
-                        m.Marcacao,
-                        
-                    }).ToList();
-                    dgv.DataSource = ls;
-                    DataGridViewTextBoxColumn coluna = new DataGridViewTextBoxColumn();
-                    coluna.HeaderText = "Saldo";
-                    coluna.Name = "SaldoCorrente";
-                    dgv.Columns.Add(coluna);
-                    foreach (DataGridViewRow row in dgv.Rows)
-                    {
-                        string cliente = row.Cells["Cliente"].Value.ToString();
-                        DateTime data = (DateTime)row.Cells["Data"].Value;
-
-                        decimal money = GetSaldoCorrente(cliente, data);
-                        row.Cells["SaldoCorrente"].Value = money;
-                       
-                        
-                    }
-                    
-                }
-
-
-
-                else if (dgvDt == "Cliente")
-                {
-                    dgv.DataSource = db.Clientes.Select(m => new
-                    {
-                        m.NIF,
-                        m.Nome,
-                        m.Estado,
-                    }).ToList();
-                    
-                }
-                else if (dgvDt == "EstadoAtivo")
-                {
-                    dgv.DataSource = db.Clientes.Select(m => new
-                    {
-                        m.Nome,
-                        m.Estado,
-                    }).Where(m => m.Estado != null && m.Estado != "").ToList();
-                }
-                else if (dgvDt == "EstadoPendente")
-                {
-                    dgv.DataSource = db.Clientes.Select(m => new
-                    {
-                        m.Nome,
-                        m.Estado,
-                    }).Where(m => m.Estado == null || m.Estado == "").ToList();
-                }
-                else if (dgvDt == "Marcados")
-                {
-                    dgv.DataSource = db.Movimentos.Select(m => new
-                    {
-                        Cliente = m.IdCliente.Nome,
-                        m.Marcacao,
-                        m.Data,
-                        m.Descricao,
-                        m.Valor,
-                    }).Where(m => m.Marcacao != null).ToList();
-                }
-                else if (dgvDt == "Livres")
-                {
-                    dgv.DataSource = db.Movimentos.Select(m => new
-                    {
-                        Cliente = m.IdCliente.Nome,
-                        m.Marcacao,
-                        m.Data,
-                        m.Descricao,
-                        m.Valor,
-                    }).Where(m => m.Marcacao == null).ToList();
-                }
-                else if (dgvDt == "Entradas")
-                {
-                    dgv.DataSource = db.Movimentos.Select(m => new
-                    {
-                        Cliente = m.IdCliente.Nome,
-                        m.Tipo,
-                        m.Valor,
-                    }).Where(m => m.Tipo == 'C').ToList();
-                }
-                else if (dgvDt == "Saidas")
-                {
-                    dgv.DataSource = db.Movimentos.Select(m => new
-                    {
-                        Cliente = m.IdCliente.Nome,
-                        m.Tipo,
-                        m.Valor,
-                    }).Where(m => m.Tipo == 'D').ToList();
-                }
+                }).ToList();
             }
-            catch (Exception ex)
+
+            return listaMovimentos;
+        }
+        public List<ListaMovimentos>? ListarMovimentosClienteMesPeriodo(string ClienteId, string? mesNumero, SelectionRange? periodoTempo, int mesPeriodo)
+        {
+            // mesPeriodo = 1 : MES
+            // mesPeriodo = 2 : PERIODO
+
+            List<ListaMovimentos>? listarMovimentos = null;
+
+            if (db.Movimentos is not null && mesPeriodo == 1 && mesNumero is not null)
             {
-                MessageBox.Show(ex.Message);
+                listarMovimentos = db.Movimentos.Where(x => x.ClienteId == Convert.ToInt16(ClienteId) && x.Data.Month == Convert.ToInt16(mesNumero)).
+                Select(m => new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+                }).ToList();
             }
+            else if (db.Movimentos is not null && mesPeriodo == 2 && periodoTempo is not null)
+            {
+                DateTime dataInicio = periodoTempo.Start;
+                DateTime dataFinal = periodoTempo.End;
+                listarMovimentos = db.Movimentos.Where(x => x.ClienteId == Convert.ToInt16(ClienteId) && x.Data.Date >= dataInicio && x.Data.Date <= dataFinal)
+                .Select(m => new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+
+                }).ToList();
+            }
+
+            return listarMovimentos;
+        }
+        private List<ListaClientes>? PreencherClientes()
+        {
+            List<ListaClientes>? listaClientes = null;
+
+            if (db.Clientes is not null)
+            {
+                listaClientes = db.Clientes.Select(m => new ListaClientes
+                {
+                    Id = m.Id,
+                    NIF = m.NIF,
+                    Nome = m.Nome,
+                    Estado = m.Estado,
+
+                }).ToList();
+            }
+
+            return listaClientes;
         }
     }
 }

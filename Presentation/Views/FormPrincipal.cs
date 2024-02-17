@@ -1,5 +1,6 @@
 using RegistoMovimentosSrJoaquim.Business.Controllers;
 using RegistoMovimentosSrJoaquim.Business.Models;
+using System.Globalization;
 using System.Linq;
 
 namespace RegistoMovimentosSrJoaquim
@@ -13,21 +14,17 @@ namespace RegistoMovimentosSrJoaquim
         }
 
         // ============== PROPERTIES ===============
-
-        Listagem ls = new Listagem();
         ProgramController pc = new ProgramController();
+        CultureInfo culture = CultureInfo.CreateSpecificCulture("pt-PT");
 
         // ============= MÉTODOS ================
         private void V_Load(object sender, EventArgs e)
         {
-            ls.preencherCBX(cbxClienteMov, "Cliente");
-            ls.preencherCBX(cbxTipo, "Tipo");
-            ls.preencherDGV(dgvPrincipal, "Movimento");
-            ls.preencherDGV(dgvMvMarcados, "Marcados");
-            ls.preencherDGV(dgvMvLivres, "Livres");
-            pc.FormatarDGV(dgvPrincipal, "Movimento");
-            pc.FormatarDGV(dgvMvMarcados, "Marcados");
-            pc.FormatarDGV(dgvMvLivres, "Livres");
+            pc.PreencherCbxClientesMov(cbxClienteMov);
+            pc.PreencherCbxTipos(cbxTipo);
+            pc.PreencherDgvMovimentos(dgvPrincipal);
+            pc.PreencherDgvMarcados(dgvMvMarcados);
+            pc.PreencherDgvLivres(dgvMvLivres);
         }
 
         private void btnMnListagem_Click(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
 
         // ============== PROPERTIES ===============
-        private AppDbContext db = AppDbContext.getInstance();
+        private AppDbContext db = AppDbContext.getInstancia();
         Cliente? c = null;
 
         // ============= MÉTODOS ================
@@ -33,15 +33,13 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 c = null;
             }catch (Exception ex) { MessageBox.Show(ex.Message); } 
         }
-
-
-        public void updateCliente(string idCliente, int nif, string nome, string estado)
+        public void updateCliente(int nif, string nome, string estado)
         {
             c = null;
 
             if (db.Clientes is not null)
             {
-                c = db.Clientes.FirstOrDefault(m => m.Id == Convert.ToInt16(idCliente);
+                c = db.Clientes.FirstOrDefault(m => m.NIF == nif);
 
                 if (c is not null)
                 {
@@ -61,7 +59,6 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             }
 
         }
-        
         public void deleteCliente(string idCliente)
         {
             c = null;
@@ -78,7 +75,5 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 }
             } 
         }
-
-
     }
 }

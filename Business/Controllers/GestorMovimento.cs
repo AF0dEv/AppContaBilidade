@@ -15,7 +15,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         public GestorMovimento() { }
 
         // ============== PROPERTIES ===============
-        private AppDbContext db = AppDbContext.getInstance();
+        private AppDbContext db = AppDbContext.getInstancia();
         Movimento? mv = null;
 
         // ============= MÉTODOS ================
@@ -23,7 +23,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             mv = new Movimento(data, descricao, valor, marcacao, Idcliente);
 
-            if (db.Movimentos is not null )
+            if (db.Movimentos is not null)
             {
                 db.Movimentos.Add(mv);
                 db.SaveChanges();
@@ -31,16 +31,15 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
             mv = null;
         }
-
         public void updateMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
         {
             mv = null;
 
-            if(db.Movimentos is not null && mv is not null )
+            if (db.Movimentos is not null && mv is not null)
             {
                 mv = db.Movimentos.FirstOrDefault(m => m.Id == Convert.ToInt16(Idcliente));
 
-                if ( mv is not null)
+                if (mv is not null)
                 {
                     mv.Data = data;
                     mv.Descricao = descricao;
@@ -60,7 +59,6 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void deleteMovimento(int idMovimento)
         {
             mv = null;
@@ -69,12 +67,13 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             {
                 mv = db.Movimentos.Where(m => m.Id == Convert.ToInt16(idMovimento)).FirstOrDefault();
 
-                if ( mv is not null)
+                if (mv is not null)
                 {
                     db.Movimentos.Remove(mv);
                     db.SaveChanges();
                     mv = null;
                 }
             }
+        }
     }
 }

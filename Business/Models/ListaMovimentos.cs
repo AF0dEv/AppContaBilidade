@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RegistoMovimentosSrJoaquim.Business.Models
 {
-    internal class ListaMovimento
+    internal class ListaMovimentos
     {
         public int Id { get; set; }
         public string Data { get; set; }
@@ -16,5 +16,6 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
         public string Marcacao { get; set; }
         public string Cliente { get; set; }  
         public int ClienteId { get; set;}
+        public decimal Saldo { get; set; }
     }
 }

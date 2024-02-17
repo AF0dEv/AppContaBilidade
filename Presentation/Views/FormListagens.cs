@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,27 +22,21 @@ namespace RegistoMovimentosSrJoaquim
         }
 
         // ============== PROPERTIES ===============
-
-        Listagem ls = new Listagem();
-        Movimento mv = new Movimento();
         ProgramController pc = new ProgramController();
+        CultureInfo culture = CultureInfo.CreateSpecificCulture("pt-PT");
 
 
         // ============= MÉTODOS ================
-
-        // ================= VOLTAR FORM ORIGINAL =====================
-
         private void FormMovimentos_Load(object sender, EventArgs e)
         {
-            ls.preencherCBX(cbxMes, "Mes");
-            ls.preencherCBX(cbxClienteLis, "Cliente");
-            //pc.FormatarDGV(dgvListagem, "Movimento");
-
+            pc.PreencherCbxMes(cbxMes);
+            pc.PreencherCbxClientesListagem(cbxClienteLis);
+            pc.PreencherDgvMovimentos(dgvListagem);
 
             gbPeriodoTempo.Hide();
             gbPeriodoTempo.Enabled = false;
         }
-
+        // ================= VOLTAR FORM ORIGINAL =====================
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             FormPrincipal fp = new FormPrincipal();
@@ -80,12 +75,16 @@ namespace RegistoMovimentosSrJoaquim
 
         private void cbxMes_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cbxClienteLis.SelectedValue is not null)
+            {
+                dgvListagem.DataSource = pc.ListarMovimentosClienteMesPeriodo(cbxClienteLis.SelectedValue.ToString(), cbxMes.SelectedValue.ToString(), null, 1);
+            }
+            
         }
 
         private void cbxClienteLis_SelectedIndexChanged(object sender, EventArgs e)
         {
-           pc.ListarClienteSelecionado(cbxClienteLis, dgvListagem);
+            //dgvListagem.DataSource = pc.ListarMovimentosClienteSelecionado(cbxClienteLis.ValueMember);
            
         }
     }

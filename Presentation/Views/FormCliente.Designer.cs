@@ -43,9 +43,8 @@
             dgvClientePendente = new DataGridView();
             label4 = new Label();
             label5 = new Label();
-            btnAtualizarEP = new Button();
-            btnAtualizarEA = new Button();
             btnAtualizarCli = new Button();
+            btnApagar = new Button();
             gbxCriarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClienteAtivo).BeginInit();
@@ -213,28 +212,6 @@
             label5.TabIndex = 6;
             label5.Text = "ESTADO PENDENTE";
             // 
-            // btnAtualizarEP
-            // 
-            btnAtualizarEP.Cursor = Cursors.Hand;
-            btnAtualizarEP.FlatStyle = FlatStyle.Popup;
-            btnAtualizarEP.Location = new Point(913, 499);
-            btnAtualizarEP.Name = "btnAtualizarEP";
-            btnAtualizarEP.Size = new Size(113, 29);
-            btnAtualizarEP.TabIndex = 14;
-            btnAtualizarEP.Text = "ATUALIZAR";
-            btnAtualizarEP.UseVisualStyleBackColor = true;
-            // 
-            // btnAtualizarEA
-            // 
-            btnAtualizarEA.Cursor = Cursors.Hand;
-            btnAtualizarEA.FlatStyle = FlatStyle.Popup;
-            btnAtualizarEA.Location = new Point(913, 232);
-            btnAtualizarEA.Name = "btnAtualizarEA";
-            btnAtualizarEA.Size = new Size(113, 29);
-            btnAtualizarEA.TabIndex = 15;
-            btnAtualizarEA.Text = "ATUALIZAR";
-            btnAtualizarEA.UseVisualStyleBackColor = true;
-            // 
             // btnAtualizarCli
             // 
             btnAtualizarCli.Cursor = Cursors.Hand;
@@ -245,6 +222,18 @@
             btnAtualizarCli.TabIndex = 16;
             btnAtualizarCli.Text = "ATUALIZAR";
             btnAtualizarCli.UseVisualStyleBackColor = true;
+            btnAtualizarCli.Click += btnAtualizarCli_Click;
+            // 
+            // btnApagar
+            // 
+            btnApagar.Cursor = Cursors.Hand;
+            btnApagar.FlatStyle = FlatStyle.Popup;
+            btnApagar.Location = new Point(492, 499);
+            btnApagar.Name = "btnApagar";
+            btnApagar.Size = new Size(113, 29);
+            btnApagar.TabIndex = 17;
+            btnApagar.Text = "APAGAR";
+            btnApagar.UseVisualStyleBackColor = true;
             // 
             // FormCliente
             // 
@@ -252,9 +241,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1038, 540);
+            Controls.Add(btnApagar);
             Controls.Add(btnAtualizarCli);
-            Controls.Add(btnAtualizarEA);
-            Controls.Add(btnAtualizarEP);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(dgvClientePendente);
@@ -291,8 +279,7 @@
         private DataGridView dgvClientePendente;
         private Label label4;
         private Label label5;
-        private Button btnAtualizarEP;
-        private Button btnAtualizarEA;
         private Button btnAtualizarCli;
+        private Button btnApagar;
     }
 }

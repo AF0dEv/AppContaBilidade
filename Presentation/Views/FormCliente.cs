@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,7 @@ namespace RegistoMovimentosSrJoaquim
 
         // ============== PROPERTIES ===============
         ProgramController pc = new ProgramController();
-        Cliente c = new Cliente();
-        Listagem ls = new Listagem();
+        CultureInfo culture = CultureInfo.CreateSpecificCulture("pt-PT");
 
         // ============= MÉTODOS ================
 
@@ -38,39 +38,51 @@ namespace RegistoMovimentosSrJoaquim
 
         private void FormCliente_Load(object sender, EventArgs e)
         {
-            ls.preencherDGV(dgvCliente, "Cliente");
-            ls.preencherDGV(dgvClienteAtivo, "EstadoAtivo");
-            ls.preencherDGV(dgvClientePendente, "EstadoPendente");
-            pc.FormatarDGV(dgvCliente, "Cliente");
-            pc.FormatarDGV(dgvClienteAtivo, "EstadoAtivo");
-            pc.FormatarDGV(dgvClientePendente, "EstadoPendente");
+            pc.PreencherDgvClientes(dgvCliente);
+            pc.PreencherDgvEstadoAtivo(dgvClienteAtivo);
+            pc.PreencherDgvEstadoPendente(dgvClientePendente);
         }
 
         private void btnCriarClix_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int nif = Convert.ToInt32(txtNIF.Text.ToString());
-                string nome = txtNome.Text.ToString();
-                string estado = txtEstado.Text.ToString();
+            string nif = txtNIF.Text;
+            string nome = txtNome.Text;
+            string estado = txtEstado.Text;
 
-                c.NIF = nif;
-                c.Nome = nome;
-                c.Estado = estado;
+            string mensagem =
+            @$"Está a adicionar o cliente com os seguintes dados: 
 
-                pc.addCliente(c);
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-            finally
-            {
-                ls.preencherDGV(dgvCliente, "Cliente");
-                ls.preencherDGV(dgvClienteAtivo, "EstadoAtivo");
-                ls.preencherDGV(dgvClientePendente, "EstadoPendente");
-            }
+                NIF: {nif}
+                Nome: {nome}
+                Estado: {estado}
+            
+            Confirmar? ";
+
+            string cabecalho = "Adicionar Cliente";
+
+            var result = MessageBox.Show(mensagem, cabecalho, MessageBoxButtons.YesNo);
+
+            if (!string.IsNullOrWhiteSpace(txtNIF.Text)
+                && !string.IsNullOrWhiteSpace(txtNome.Text))
+
+                if (result == DialogResult.Yes)
+                    pc.addCliente(Convert.ToInt32(nif), nome, estado);
+                else
+                    MessageBox.Show("Operaçao cancelada.");
+            else
+                MessageBox.Show("Preencha os campos para adicionar um cliente.");
+        }
+
+        private void btnAtualizarCli_Click(object sender, EventArgs e)
+        {
+            string nif = txtNIF.Text;
+            string nome = txtNome.Text;
+            string estado = txtEstado.Text;
+
+            if (dgvCliente.SelectedRows.Count > 0)
+                pc.updateCliente(Convert.ToInt32(nif), nome, estado);
+            else
+                MessageBox.Show("Selecione um cliente da tabela para atualizar.");
         }
     }
 }

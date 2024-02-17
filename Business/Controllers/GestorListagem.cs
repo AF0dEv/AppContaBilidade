@@ -16,11 +16,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         public GestorListagem() { }
 
         // ==== PROPERTIES =====
-
-        AppDbContext db = new AppDbContext();
         Listagem ls = new Listagem();
 
-        // ==== MÉTODOS ========
+        // ====================================== MÉTODOS ======================================
         public void FormatarDGV(DataGridView dgv, string dgvDt)
         {
             if (dgvDt == "Movimento")
@@ -103,13 +101,13 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                 dgv.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    if (Convert.ToInt32(row.Cells["SaldoCorrente"].Value.ToString()) < 0)
+                    if (Convert.ToInt32(row.Cells["Saldo"].Value.ToString()) < 0)
                     {
-                        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Red;
+                        row.Cells["Saldo"].Style.ForeColor = Color.Red;
                     }
                     else
                     {
-                        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Green;
+                        row.Cells["Saldo"].Style.ForeColor = Color.Green;
                     }
                 }
 
@@ -395,102 +393,75 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
             }
         }
-
-        public void ListarClienteSelecionado(ComboBox cbx, DataGridView dgv)
+        public decimal GetSaldoCorrente(string nomeCliente, DateTime data)
         {
-            var lsa = dgv.DataSource;
-            string dt = cbx.Text.ToString();
-           
-            if (dt == "Todos")
-            {
-
-                lsa = db.Movimentos.Select(m => new
-                {
-                    m.Id,
-                    m.Data,
-                    m.Descricao,
-                    Cliente = m.IdCliente.Nome,
-                    m.Valor,
-                    m.Tipo,
-                    m.Marcacao,
-                }).ToList();
-                dgv.DataSource = lsa;
-                foreach (var DataGridViewRow in dgv)
-                {
-                    // estava aqui, a tentar que a dgv nao rebentasse por causa do formato, loop para ver se existe coli¡una saldo senao cria la
-                }
-
-            }
-            else
-            {
-
-                 lsa = db.Movimentos.Select(m => new
-                {
-                    m.Id,
-                    m.Data,
-                    m.Descricao,
-                    Cliente = m.IdCliente.Nome,
-                    m.Valor,
-                    m.Tipo,
-                    m.Marcacao,
-                }).Where(m => m.Cliente == dt).ToList();
-                dgv.DataSource = lsa;
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    string cliente = row.Cells["Cliente"].Value.ToString();
-                    DateTime data = (DateTime)row.Cells["Data"].Value;
-
-                    decimal money = ls.GetSaldoCorrente(cliente, data);
-                    row.Cells["SaldoCorrente"].Value = money;
-
-
-                }
-                //// formatar saldo
-                //dgv.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dgv.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //foreach (DataGridViewRow row in dgv.Rows)
-                //{
-                //    if (Convert.ToInt32(row.Cells["SaldoCorrente"].Value.ToString()) < 0)
-                //    {
-                //        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Red;
-                //    }
-                //    else
-                //    {
-                //        row.Cells["SaldoCorrente"].Style.ForeColor = Color.Green;
-                //    }
-                //}
-
-                //// formatar valor
-
-                //foreach (DataGridViewRow row in dgv.Rows)
-                //{
-                //    if (row.Cells["Tipo"].Value.ToString() == "C")
-                //    {
-                //        row.Cells["Valor"].Style.ForeColor = Color.Green;
-                //    }
-                //    else
-                //    {
-                //        row.Cells["Valor"].Style.ForeColor = Color.Red;
-                //    }
-                //}
-            }
-
-
+            return Listagem.GetSaldoCorrente(nomeCliente, data);
         }
 
-        public void ListarAteMes(ComboBox cbx, DataGridView dgv)
-        {
-            string dt = cbx.Text.ToString();
-            //if (dt == "Todos")
-            //{
-            //    ls.preencherDGV(dgv, "Movimentos");
-            //}
-            //else
-            //{
-            //    var ls = db.Movimentos
-            //}
-            // * COMPARAR MOVIMENTOS DE UM ANO PARA O OUTRO E MENSAIS * \\ 
+        // ================================== PREENCHER CBX ====================================
 
+        public void PreencherCbxTipos(ComboBox cbx)
+        {
+            ls.PreencherCbxTipos(cbx);
+        }
+        public void PreenchreCbxMes(ComboBox cbx)
+        {
+            ls.PreencherCbxMeses(cbx);
+        }
+        public void PreencherCbxClientesListagem(ComboBox cbx)
+        {
+            ls.PreencherCbxClientesListagem(cbx);
+        }
+        public void PreencherCbxClientesMov(ComboBox cbx)
+        {
+            ls.PreencherCbxClientesMov(cbx);
+        }
+
+        // ================================== PREENCHER DGV ====================================
+
+        public void PreencherDgvClientes(DataGridView dgvClientes)
+        {
+            dgvClientes.DataSource = ls.PreencherDgvClientes();
+        }
+        public void PreencherDgvMovimentos(DataGridView dgvMovimentos)
+        {
+            dgvMovimentos.DataSource = ls.PreencherDgvMovimentos();
+        }
+        public void PreencherDgvLivres(DataGridView dgvLivres)
+        { 
+            dgvLivres.DataSource = ls.PreencherDgvLivres();
+        }
+        public void PreencherDgvMarcados(DataGridView dgvMarcados)
+        {
+            dgvMarcados.DataSource = ls.PreencherDgvMarcados();
+        }
+        public void PreencherDgvEstadoPendente(DataGridView dgvEstadoPendente)
+        {
+            dgvEstadoPendente.DataSource = ls.PreencherDgvEstadoPendente();
+        }
+        public void PreencherDgvEstadoAtivo(DataGridView dgvEstadoAtivo)
+        {
+            dgvEstadoAtivo.DataSource = ls.PreencherDgvEstadoAtivo();
+        }
+        public void PreencherDgvEntradas(DataGridView dgvEntradas)
+        {
+            dgvEntradas.DataSource = ls.PreencherDgvEntradas();
+        }
+        public void PreencherDgvSaidas(DataGridView dgvSaidas)
+        {
+            dgvSaidas.DataSource = ls.PreencherDgvSaidas();
+        }
+
+        // ================================== LISTAGENS ====================================
+
+        public List<ListaMovimentos>? ListarMovimentosClienteSelecionado(string ClienteId)
+        {
+            return ls.ListarMovimentosClienteSelecionado(ClienteId);
+        }
+        public List<ListaMovimentos>? ListarMovimentosClienteMesPeriodo(string ClienteId, string? mesNumero, SelectionRange? periodoTempo, int mesPeriodo)
+        {
+            return ls.ListarMovimentosClienteMesPeriodo(ClienteId, mesNumero, periodoTempo, mesPeriodo);
         }
     }
 }
+

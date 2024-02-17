@@ -43,6 +43,8 @@
             gbPeriodoTempo = new GroupBox();
             dtpList1 = new MonthCalendar();
             btnVoltarLis = new Button();
+            btnSaidas = new Button();
+            btnEntradas = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListagem).BeginInit();
             gbMes.SuspendLayout();
             gbPeriodoTempo.SuspendLayout();
@@ -85,7 +87,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label12.Location = new Point(6, 48);
+            label12.Location = new Point(17, 57);
             label12.Name = "label12";
             label12.Size = new Size(57, 26);
             label12.TabIndex = 29;
@@ -132,7 +134,7 @@
             cbxMes.Font = new Font("Segoe UI", 12F);
             cbxMes.ForeColor = Color.Black;
             cbxMes.FormattingEnabled = true;
-            cbxMes.Location = new Point(69, 42);
+            cbxMes.Location = new Point(80, 51);
             cbxMes.Name = "cbxMes";
             cbxMes.Size = new Size(151, 36);
             cbxMes.TabIndex = 26;
@@ -186,6 +188,7 @@
             // dtpList1
             // 
             dtpList1.Location = new Point(38, 10);
+            dtpList1.MaxSelectionCount = 10957266;
             dtpList1.Name = "dtpList1";
             dtpList1.TabIndex = 0;
             // 
@@ -202,12 +205,38 @@
             btnVoltarLis.UseVisualStyleBackColor = true;
             btnVoltarLis.Click += btnVoltar_Click;
             // 
+            // btnSaidas
+            // 
+            btnSaidas.Cursor = Cursors.Hand;
+            btnSaidas.FlatStyle = FlatStyle.Popup;
+            btnSaidas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaidas.Location = new Point(12, 444);
+            btnSaidas.Name = "btnSaidas";
+            btnSaidas.Size = new Size(113, 29);
+            btnSaidas.TabIndex = 40;
+            btnSaidas.Text = "SAÍDAS";
+            btnSaidas.UseVisualStyleBackColor = true;
+            // 
+            // btnEntradas
+            // 
+            btnEntradas.Cursor = Cursors.Hand;
+            btnEntradas.FlatStyle = FlatStyle.Popup;
+            btnEntradas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEntradas.Location = new Point(12, 409);
+            btnEntradas.Name = "btnEntradas";
+            btnEntradas.Size = new Size(113, 29);
+            btnEntradas.TabIndex = 41;
+            btnEntradas.Text = "ENTRADAS";
+            btnEntradas.UseVisualStyleBackColor = true;
+            // 
             // FormListagens
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1038, 540);
+            Controls.Add(btnEntradas);
+            Controls.Add(btnSaidas);
             Controls.Add(btnVoltarLis);
             Controls.Add(gbPeriodoTempo);
             Controls.Add(gbMes);
@@ -247,5 +276,7 @@
         private GroupBox gbPeriodoTempo;
         private MonthCalendar dtpList1;
         private Button btnVoltarLis;
+        private Button btnSaidas;
+        private Button btnEntradas;
     }
 }

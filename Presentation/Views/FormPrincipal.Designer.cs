@@ -45,7 +45,6 @@
             label5 = new Label();
             dtpMovimento = new DateTimePicker();
             label4 = new Label();
-            cbxClienteMov = new ComboBox();
             btnCriarClix = new Button();
             txtMarcacao = new TextBox();
             label3 = new Label();
@@ -53,6 +52,7 @@
             label2 = new Label();
             txtDescricao = new TextBox();
             label7 = new Label();
+            cbxClienteMov = new ComboBox();
             mnForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMvLivres).BeginInit();
@@ -95,7 +95,7 @@
             mnForms.Items.AddRange(new ToolStripItem[] { btnMnListagem, btnMnClientes });
             mnForms.Location = new Point(6, 503);
             mnForms.Name = "mnForms";
-            mnForms.Size = new Size(389, 36);
+            mnForms.Size = new Size(239, 36);
             mnForms.TabIndex = 21;
             // 
             // dgvPrincipal
@@ -244,16 +244,6 @@
             label4.TabIndex = 15;
             label4.Text = "CLIENTE";
             // 
-            // cbxClienteMov
-            // 
-            cbxClienteMov.Cursor = Cursors.IBeam;
-            cbxClienteMov.Font = new Font("Segoe UI", 12F);
-            cbxClienteMov.ForeColor = Color.Black;
-            cbxClienteMov.Location = new Point(6, 293);
-            cbxClienteMov.Name = "cbxClienteMov";
-            cbxClienteMov.Size = new Size(151, 36);
-            cbxClienteMov.TabIndex = 14;
-            // 
             // btnCriarClix
             // 
             btnCriarClix.Cursor = Cursors.Hand;
@@ -331,6 +321,16 @@
             label7.TabIndex = 7;
             label7.Text = "DATA";
             // 
+            // cbxClienteMov
+            // 
+            cbxClienteMov.Cursor = Cursors.IBeam;
+            cbxClienteMov.Font = new Font("Segoe UI", 12F);
+            cbxClienteMov.ForeColor = Color.Black;
+            cbxClienteMov.Location = new Point(6, 293);
+            cbxClienteMov.Name = "cbxClienteMov";
+            cbxClienteMov.Size = new Size(151, 36);
+            cbxClienteMov.TabIndex = 14;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -380,7 +380,6 @@
         private ComboBox cbxTipo;
         private Label label5;
         private DateTimePicker dtpMovimento;
-        private ComboBox cbxClienteMov;
         private Button btnCriarClix;
         private TextBox txtMarcacao;
         private Label label3;
@@ -391,5 +390,6 @@
         private Button btnCriarCliente;
         private Button btnCriarMov;
         private Label label4;
+        private ComboBox cbxClienteMov;
     }
 }
