@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RegistoMovimentosSrJoaquim.Migrations
 {
     /// <inheritdoc />
-    public partial class PRIMEIRA : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,26 +34,26 @@ namespace RegistoMovimentosSrJoaquim.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Valor = table.Column<int>(type: "int", nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Tipo = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Marcacao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdClienteId = table.Column<int>(type: "int", nullable: false)
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movimentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movimentos_Clientes_IdClienteId",
-                        column: x => x.IdClienteId,
+                        name: "FK_Movimentos_Clientes_ClienteId",
+                        column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentos_IdClienteId",
+                name: "IX_Movimentos_ClienteId",
                 table: "Movimentos",
-                column: "IdClienteId");
+                column: "ClienteId");
         }
 
         /// <inheritdoc />

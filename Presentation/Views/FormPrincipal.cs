@@ -1,7 +1,9 @@
 using RegistoMovimentosSrJoaquim.Business.Controllers;
 using RegistoMovimentosSrJoaquim.Business.Models;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RegistoMovimentosSrJoaquim
 {
@@ -39,6 +41,44 @@ namespace RegistoMovimentosSrJoaquim
             FormCliente fc = new FormCliente();
             fc.Show();
             this.Hide();
+        }
+
+        private void btnAtualizarMov_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCriarClix_Click(object sender, EventArgs e)
+        {
+            
+            DateTime data = dtpMovimento.Value;
+            string descricao = txtDescricao.Text;
+            string marcacao = txtMarcacao.Text;
+            int IdCliente = Convert.ToInt16(cbxClienteMov.SelectedValue);
+            int tipoId = Convert.ToInt16(cbxTipo.SelectedValue);
+            decimal valor = 0.0m;
+            try
+            {
+                valor = Convert.ToDecimal(txtValor.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Preencha o camp 'Valor' corretamente.");
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(descricao) && IdCliente != 0 && tipoId != 0)
+            {
+                pc.addMovimento(data,descricao,valor,marcacao, IdCliente);
+            }
+            else
+            {
+                MessageBox.Show("Preencha os campos corretamente.");
+            }
+
+            pc.PreencherDgvMovimentos(dgvPrincipal);
+            pc.PreencherDgvMarcados(dgvMvMarcados);
+            pc.PreencherDgvLivres(dgvMvLivres);
         }
     }
 }

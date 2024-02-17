@@ -11,7 +11,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
         public int Id { get; set; }
         public string Data { get; set; }
         public string Descricao { get; set; }
-        public int Valor { get; set; }
+        public decimal Valor { get; set; }
         public char Tipo { get; set; }
         public string Marcacao { get; set; }
         public string Cliente { get; set; }  

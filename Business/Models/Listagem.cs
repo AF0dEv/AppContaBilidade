@@ -37,7 +37,6 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                 DataTable dt = new DataTable();
                 dt.Columns.Add("TipoNumero", typeof(string));
                 dt.Columns.Add("TipoNome", typeof(string));
-                dt.Rows.Add("00", "Todos");
                 dt.Rows.Add("01", "Crédito");
                 dt.Rows.Add("02", "Débito");
 

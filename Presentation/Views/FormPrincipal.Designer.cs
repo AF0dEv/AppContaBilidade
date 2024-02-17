@@ -40,19 +40,20 @@
             btnAtualizarMov = new Button();
             label8 = new Label();
             gbxCriarCliente = new GroupBox();
+            btnApagar = new Button();
             label1 = new Label();
             cbxTipo = new ComboBox();
             label5 = new Label();
             dtpMovimento = new DateTimePicker();
             label4 = new Label();
+            cbxClienteMov = new ComboBox();
             btnCriarClix = new Button();
             txtMarcacao = new TextBox();
             label3 = new Label();
-            txtValor = new TextBox();
             label2 = new Label();
             txtDescricao = new TextBox();
             label7 = new Label();
-            cbxClienteMov = new ComboBox();
+            txtValor = new TextBox();
             mnForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMvLivres).BeginInit();
@@ -147,12 +148,13 @@
             btnAtualizarMov.BackColor = Color.LightSteelBlue;
             btnAtualizarMov.Cursor = Cursors.Hand;
             btnAtualizarMov.FlatStyle = FlatStyle.Popup;
-            btnAtualizarMov.Location = new Point(915, 269);
+            btnAtualizarMov.Location = new Point(145, 452);
             btnAtualizarMov.Name = "btnAtualizarMov";
-            btnAtualizarMov.Size = new Size(109, 29);
+            btnAtualizarMov.Size = new Size(130, 29);
             btnAtualizarMov.TabIndex = 25;
             btnAtualizarMov.Text = "ATUALIZAR";
             btnAtualizarMov.UseVisualStyleBackColor = false;
+            btnAtualizarMov.Click += btnAtualizarMov_Click;
             // 
             // label8
             // 
@@ -168,16 +170,18 @@
             // gbxCriarCliente
             // 
             gbxCriarCliente.BackColor = Color.Transparent;
+            gbxCriarCliente.Controls.Add(txtValor);
+            gbxCriarCliente.Controls.Add(btnApagar);
             gbxCriarCliente.Controls.Add(label1);
             gbxCriarCliente.Controls.Add(cbxTipo);
             gbxCriarCliente.Controls.Add(label5);
             gbxCriarCliente.Controls.Add(dtpMovimento);
+            gbxCriarCliente.Controls.Add(btnAtualizarMov);
             gbxCriarCliente.Controls.Add(label4);
             gbxCriarCliente.Controls.Add(cbxClienteMov);
             gbxCriarCliente.Controls.Add(btnCriarClix);
             gbxCriarCliente.Controls.Add(txtMarcacao);
             gbxCriarCliente.Controls.Add(label3);
-            gbxCriarCliente.Controls.Add(txtValor);
             gbxCriarCliente.Controls.Add(label2);
             gbxCriarCliente.Controls.Add(txtDescricao);
             gbxCriarCliente.Controls.Add(label7);
@@ -187,6 +191,18 @@
             gbxCriarCliente.TabIndex = 29;
             gbxCriarCliente.TabStop = false;
             gbxCriarCliente.Text = "MOVIMENTO";
+            // 
+            // btnApagar
+            // 
+            btnApagar.BackColor = Color.LightSteelBlue;
+            btnApagar.Cursor = Cursors.Hand;
+            btnApagar.FlatStyle = FlatStyle.Popup;
+            btnApagar.Location = new Point(281, 452);
+            btnApagar.Name = "btnApagar";
+            btnApagar.Size = new Size(124, 29);
+            btnApagar.TabIndex = 26;
+            btnApagar.Text = "APAGAR";
+            btnApagar.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -244,16 +260,27 @@
             label4.TabIndex = 15;
             label4.Text = "CLIENTE";
             // 
+            // cbxClienteMov
+            // 
+            cbxClienteMov.Cursor = Cursors.IBeam;
+            cbxClienteMov.Font = new Font("Segoe UI", 12F);
+            cbxClienteMov.ForeColor = Color.Black;
+            cbxClienteMov.Location = new Point(6, 293);
+            cbxClienteMov.Name = "cbxClienteMov";
+            cbxClienteMov.Size = new Size(151, 36);
+            cbxClienteMov.TabIndex = 14;
+            // 
             // btnCriarClix
             // 
             btnCriarClix.Cursor = Cursors.Hand;
             btnCriarClix.FlatStyle = FlatStyle.Popup;
             btnCriarClix.Location = new Point(6, 452);
             btnCriarClix.Name = "btnCriarClix";
-            btnCriarClix.Size = new Size(122, 29);
+            btnCriarClix.Size = new Size(133, 29);
             btnCriarClix.TabIndex = 13;
             btnCriarClix.Text = "CRIAR";
             btnCriarClix.UseVisualStyleBackColor = true;
+            btnCriarClix.Click += btnCriarClix_Click;
             // 
             // txtMarcacao
             // 
@@ -276,17 +303,6 @@
             label3.Size = new Size(130, 26);
             label3.TabIndex = 11;
             label3.Text = "MARCAÇÃO";
-            // 
-            // txtValor
-            // 
-            txtValor.Cursor = Cursors.IBeam;
-            txtValor.Font = new Font("Segoe UI", 12F);
-            txtValor.ForeColor = Color.Black;
-            txtValor.Location = new Point(6, 173);
-            txtValor.Name = "txtValor";
-            txtValor.PlaceholderText = "ESCREVA AQUI...";
-            txtValor.Size = new Size(151, 34);
-            txtValor.TabIndex = 10;
             // 
             // label2
             // 
@@ -321,15 +337,16 @@
             label7.TabIndex = 7;
             label7.Text = "DATA";
             // 
-            // cbxClienteMov
+            // txtValor
             // 
-            cbxClienteMov.Cursor = Cursors.IBeam;
-            cbxClienteMov.Font = new Font("Segoe UI", 12F);
-            cbxClienteMov.ForeColor = Color.Black;
-            cbxClienteMov.Location = new Point(6, 293);
-            cbxClienteMov.Name = "cbxClienteMov";
-            cbxClienteMov.Size = new Size(151, 36);
-            cbxClienteMov.TabIndex = 14;
+            txtValor.Cursor = Cursors.IBeam;
+            txtValor.Font = new Font("Segoe UI", 12F);
+            txtValor.ForeColor = Color.Black;
+            txtValor.Location = new Point(6, 175);
+            txtValor.Name = "txtValor";
+            txtValor.PlaceholderText = "ESCREVA AQUI...";
+            txtValor.Size = new Size(151, 34);
+            txtValor.TabIndex = 27;
             // 
             // FormPrincipal
             // 
@@ -342,7 +359,6 @@
             Controls.Add(dgvMvLivres);
             Controls.Add(label9);
             Controls.Add(dgvMvMarcados);
-            Controls.Add(btnAtualizarMov);
             Controls.Add(label8);
             Controls.Add(mnForms);
             Controls.Add(label6);
@@ -383,7 +399,6 @@
         private Button btnCriarClix;
         private TextBox txtMarcacao;
         private Label label3;
-        private TextBox txtValor;
         private Label label2;
         private TextBox txtDescricao;
         private Label label7;
@@ -391,5 +406,7 @@
         private Button btnCriarMov;
         private Label label4;
         private ComboBox cbxClienteMov;
+        private Button btnApagar;
+        private TextBox txtValor;
     }
 }

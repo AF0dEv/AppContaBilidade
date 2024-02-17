@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegistoMovimentosSrJoaquim.Persistence.Data;
 
@@ -12,20 +11,18 @@ using RegistoMovimentosSrJoaquim.Persistence.Data;
 namespace RegistoMovimentosSrJoaquim.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240129131124_PRIMEIRA")]
-    partial class PRIMEIRA
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Cliente", b =>
+            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Business.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +45,7 @@ namespace RegistoMovimentosSrJoaquim.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Movimento", b =>
+            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Business.Models.Movimento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,14 +53,14 @@ namespace RegistoMovimentosSrJoaquim.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdClienteId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Marcacao")
                         .HasColumnType("nvarchar(max)");
@@ -72,25 +69,25 @@ namespace RegistoMovimentosSrJoaquim.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<int>("Valor")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdClienteId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Movimentos");
                 });
 
-            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Movimento", b =>
+            modelBuilder.Entity("RegistoMovimentosSrJoaquim.Business.Models.Movimento", b =>
                 {
-                    b.HasOne("RegistoMovimentosSrJoaquim.Cliente", "IdCliente")
+                    b.HasOne("RegistoMovimentosSrJoaquim.Business.Models.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("IdClienteId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("IdCliente");
+                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

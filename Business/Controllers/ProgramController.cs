@@ -20,7 +20,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         // ==== MÉTODOS ========
 
         // ==================================== GESTOR MOVIMENTO ====================================
-        public void addMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
+        public void addMovimento(DateTime data, string descricao, decimal valor, string marcacao, int Idcliente)
         {
             gm.addMovimento(data, descricao, valor, marcacao, Idcliente);
         }

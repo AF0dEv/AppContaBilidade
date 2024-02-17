@@ -12,15 +12,15 @@ using RegistoMovimentosSrJoaquim.Persistence.Data;
 namespace RegistoMovimentosSrJoaquim.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240217184301_UpdateClientEntity")]
-    partial class UpdateClientEntity
+    [Migration("20240217202509_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -72,8 +72,8 @@ namespace RegistoMovimentosSrJoaquim.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
-                    b.Property<int>("Valor")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
