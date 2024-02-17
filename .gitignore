@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Ignore File
 /Persistence/Data/App.config
+/Persistence/Data/AppDbContext.cs
