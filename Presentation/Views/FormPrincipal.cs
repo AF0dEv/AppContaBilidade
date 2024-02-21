@@ -50,12 +50,29 @@ namespace RegistoMovimentosSrJoaquim
 
         private void btnCriarClix_Click(object sender, EventArgs e)
         {
-            
+            char tipo = 'C';
+            string? marcacao = null;
             DateTime data = dtpMovimento.Value;
             string descricao = txtDescricao.Text;
-            string marcacao = txtMarcacao.Text;
+            if (txtMarcacao.Text == null || txtMarcacao.Text == "")
+            {
+                marcacao = null;
+            }
+            else
+            {
+                marcacao = txtMarcacao.Text;
+            }
             int IdCliente = Convert.ToInt16(cbxClienteMov.SelectedValue);
-            int tipoId = Convert.ToInt16(cbxTipo.SelectedValue);
+            string tipoId = cbxTipo.SelectedValue.ToString();
+            if (tipoId.Equals("01"))
+            {
+                tipo = 'C';
+            }
+            else if (tipoId.Equals("02"))
+            {
+                tipo = 'D';
+            }
+
             decimal valor = 0.0m;
             try
             {
@@ -67,9 +84,9 @@ namespace RegistoMovimentosSrJoaquim
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(descricao) && IdCliente != 0 && tipoId != 0)
+            if (!string.IsNullOrWhiteSpace(descricao) && IdCliente != 0 && tipoId != "0")
             {
-                pc.addMovimento(data,descricao,valor,marcacao, IdCliente);
+                pc.addMovimento(data, descricao, valor, tipo, marcacao, IdCliente);
             }
             else
             {
@@ -79,6 +96,29 @@ namespace RegistoMovimentosSrJoaquim
             pc.PreencherDgvMovimentos(dgvPrincipal);
             pc.PreencherDgvMarcados(dgvMvMarcados);
             pc.PreencherDgvLivres(dgvMvLivres);
+        }
+
+        // ERRO AQUI, INDEXES ERRADOS, CONSERTAR O SELECIONADO MAL FAZ LOAD
+
+        private void dgvPrincipal_SelectionChanged(object sender, EventArgs e)
+        {
+            dtpMovimento.Text = dgvPrincipal.SelectedCells[1].Value.ToString();
+            txtDescricao.Text = dgvPrincipal.SelectedCells[2].Value.ToString();
+            txtValor.Text = dgvPrincipal.SelectedCells[3].Value.ToString();
+            if (dgvPrincipal.SelectedCells[4].Value.ToString().Equals('C')) 
+            {
+                cbxTipo.SelectedItem = "Crédito";
+            }
+            else if (dgvPrincipal.SelectedCells[4].Value.ToString().Equals('D'))
+            {
+                cbxTipo.SelectedItem = "Débito";
+            }
+            if (dgvPrincipal.SelectedCells[4].Value.ToString() != null)
+            {
+                txtMarcacao.Text = dgvPrincipal.SelectedCells[4].Value.ToString();
+            }
+            cbxClienteMov.SelectedItem = dgvPrincipal.SelectedCells[6].Value.ToString();
+
         }
     }
 }

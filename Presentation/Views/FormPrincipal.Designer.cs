@@ -40,6 +40,7 @@
             btnAtualizarMov = new Button();
             label8 = new Label();
             gbxCriarCliente = new GroupBox();
+            txtValor = new TextBox();
             btnApagar = new Button();
             label1 = new Label();
             cbxTipo = new ComboBox();
@@ -53,7 +54,6 @@
             label2 = new Label();
             txtDescricao = new TextBox();
             label7 = new Label();
-            txtValor = new TextBox();
             mnForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMvLivres).BeginInit();
@@ -109,6 +109,7 @@
             dgvPrincipal.RowHeadersWidth = 51;
             dgvPrincipal.Size = new Size(607, 223);
             dgvPrincipal.TabIndex = 1;
+            dgvPrincipal.SelectionChanged += dgvPrincipal_SelectionChanged;
             // 
             // dgvMvLivres
             // 
@@ -191,6 +192,17 @@
             gbxCriarCliente.TabIndex = 29;
             gbxCriarCliente.TabStop = false;
             gbxCriarCliente.Text = "MOVIMENTO";
+            // 
+            // txtValor
+            // 
+            txtValor.Cursor = Cursors.IBeam;
+            txtValor.Font = new Font("Segoe UI", 12F);
+            txtValor.ForeColor = Color.Black;
+            txtValor.Location = new Point(6, 175);
+            txtValor.Name = "txtValor";
+            txtValor.PlaceholderText = "ESCREVA AQUI...";
+            txtValor.Size = new Size(151, 34);
+            txtValor.TabIndex = 27;
             // 
             // btnApagar
             // 
@@ -336,17 +348,6 @@
             label7.Size = new Size(66, 26);
             label7.TabIndex = 7;
             label7.Text = "DATA";
-            // 
-            // txtValor
-            // 
-            txtValor.Cursor = Cursors.IBeam;
-            txtValor.Font = new Font("Segoe UI", 12F);
-            txtValor.ForeColor = Color.Black;
-            txtValor.Location = new Point(6, 175);
-            txtValor.Name = "txtValor";
-            txtValor.PlaceholderText = "ESCREVA AQUI...";
-            txtValor.Size = new Size(151, 34);
-            txtValor.TabIndex = 27;
             // 
             // FormPrincipal
             // 

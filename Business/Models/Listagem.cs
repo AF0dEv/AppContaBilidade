@@ -182,7 +182,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     ClienteId = m.ClienteId,
                     Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
 
-                }).Where(m => m.Marcacao == null).ToList();
+                }).Where(m => m.Marcacao == null || m.Marcacao == "").ToList();
             }
 
             return listaMovimentos;
@@ -200,7 +200,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     NIF = m.NIF,
                     Nome = m.Nome,
                     Estado = m.Estado,
-                }).Where(m => m.Estado == null || m.Estado == "").ToList();
+                }).Where(m => m.Estado == null && m.Estado == "").ToList();
             }
 
             return listaClientes;

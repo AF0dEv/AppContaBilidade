@@ -3,11 +3,12 @@
     internal class Movimento
     {
         // Construtor
-        public Movimento(DateTime data, string descricao, decimal valor, string marcacao, int clienteId)
+        public Movimento(DateTime data, string descricao, decimal valor, char tipo, string marcacao, int clienteId)
         {
             this.Data = data;
             this.Descricao = descricao;
             this.Valor = valor;
+            this.Tipo = tipo;
             this.Marcacao = marcacao;
             this.ClienteId = clienteId;
         }

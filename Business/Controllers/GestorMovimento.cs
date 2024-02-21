@@ -19,9 +19,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         Movimento? mv = null;
 
         // ============= MÉTODOS ================
-        public void addMovimento(DateTime data, string descricao, decimal valor, string marcacao, int Idcliente)
+        public void addMovimento(DateTime data, string descricao, decimal valor, char tipo, string marcacao, int Idcliente)
         {
-            mv = new Movimento(data, descricao, valor, marcacao, Idcliente);
+            mv = new Movimento(data, descricao, valor, tipo, marcacao, Idcliente);
 
             if (db.Movimentos is not null)
             {
