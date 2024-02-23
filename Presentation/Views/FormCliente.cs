@@ -84,5 +84,17 @@ namespace RegistoMovimentosSrJoaquim
             else
                 MessageBox.Show("Selecione um cliente da tabela para atualizar.");
         }
+
+        private void dgvCliente_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtIdCliente.Text = dgvCliente.SelectedCells[0].Value.ToString();
+                txtNIF.Text = dgvCliente.SelectedCells[1].Value.ToString();
+                txtNome.Text = dgvCliente.SelectedCells[2].Value.ToString();
+                txtEstado.Text = dgvCliente.SelectedCells[3].Value.ToString();
+            }
+            catch { }
+        }
     }
 }

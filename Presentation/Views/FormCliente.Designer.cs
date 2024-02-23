@@ -45,6 +45,7 @@
             label5 = new Label();
             btnAtualizarCli = new Button();
             btnApagar = new Button();
+            txtIdCliente = new TextBox();
             gbxCriarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClienteAtivo).BeginInit();
@@ -53,6 +54,7 @@
             // 
             // gbxCriarCliente
             // 
+            gbxCriarCliente.Controls.Add(txtIdCliente);
             gbxCriarCliente.Controls.Add(btnVoltar);
             gbxCriarCliente.Controls.Add(txtNome);
             gbxCriarCliente.Controls.Add(txtEstado);
@@ -86,7 +88,7 @@
             txtNome.Cursor = Cursors.IBeam;
             txtNome.Font = new Font("Segoe UI", 12F);
             txtNome.ForeColor = SystemColors.WindowText;
-            txtNome.Location = new Point(6, 173);
+            txtNome.Location = new Point(6, 320);
             txtNome.Name = "txtNome";
             txtNome.PlaceholderText = "ESCREVA AQUI...";
             txtNome.Size = new Size(155, 34);
@@ -97,7 +99,7 @@
             txtEstado.Cursor = Cursors.IBeam;
             txtEstado.Font = new Font("Segoe UI", 12F);
             txtEstado.ForeColor = SystemColors.WindowText;
-            txtEstado.Location = new Point(6, 288);
+            txtEstado.Location = new Point(6, 435);
             txtEstado.Name = "txtEstado";
             txtEstado.PlaceholderText = "ESCREVA AQUI...";
             txtEstado.Size = new Size(155, 34);
@@ -120,7 +122,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(6, 259);
+            label3.Location = new Point(6, 406);
             label3.Name = "label3";
             label3.Size = new Size(94, 26);
             label3.TabIndex = 11;
@@ -131,7 +133,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(6, 145);
+            label1.Location = new Point(6, 292);
             label1.Name = "label1";
             label1.Size = new Size(75, 26);
             label1.TabIndex = 9;
@@ -142,7 +144,7 @@
             txtNIF.Cursor = Cursors.IBeam;
             txtNIF.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNIF.ForeColor = SystemColors.WindowText;
-            txtNIF.Location = new Point(6, 69);
+            txtNIF.Location = new Point(6, 216);
             txtNIF.Name = "txtNIF";
             txtNIF.PlaceholderText = "ESCREVA AQUI...";
             txtNIF.Size = new Size(155, 34);
@@ -153,7 +155,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(6, 40);
+            label2.Location = new Point(6, 187);
             label2.Name = "label2";
             label2.Size = new Size(47, 26);
             label2.TabIndex = 7;
@@ -169,6 +171,7 @@
             dgvCliente.RowHeadersWidth = 51;
             dgvCliente.Size = new Size(487, 469);
             dgvCliente.TabIndex = 2;
+            dgvCliente.SelectionChanged += dgvCliente_SelectionChanged;
             // 
             // dgvClienteAtivo
             // 
@@ -235,6 +238,18 @@
             btnApagar.Text = "APAGAR";
             btnApagar.UseVisualStyleBackColor = true;
             // 
+            // txtIdCliente
+            // 
+            txtIdCliente.Cursor = Cursors.IBeam;
+            txtIdCliente.Enabled = false;
+            txtIdCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtIdCliente.ForeColor = SystemColors.WindowText;
+            txtIdCliente.Location = new Point(6, 26);
+            txtIdCliente.Name = "txtIdCliente";
+            txtIdCliente.PlaceholderText = "ID...";
+            txtIdCliente.Size = new Size(155, 34);
+            txtIdCliente.TabIndex = 22;
+            // 
             // FormCliente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -281,5 +296,6 @@
         private Label label5;
         private Button btnAtualizarCli;
         private Button btnApagar;
+        private TextBox txtIdCliente;
     }
 }
