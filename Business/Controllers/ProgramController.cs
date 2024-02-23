@@ -24,9 +24,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             gm.addMovimento(data, descricao, valor, tipo, marcacao, Idcliente);
         }
-        public void updateMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
+        public void updateMovimento(DateTime data, string descricao, decimal valor, char tipo, string marcacao,int idCliente, int idMov)
         {
-            gm.updateMovimento(data, descricao, valor, marcacao, Idcliente);
+            gm.updateMovimento(data, descricao, valor, tipo, marcacao, idCliente, idMov);
         }
         public void deleteMovimento(int idMovimento)
         {

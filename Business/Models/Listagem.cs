@@ -35,10 +35,10 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
             try
             {
                 DataTable dt = new DataTable();
-                dt.Columns.Add("TipoNumero", typeof(string));
+                dt.Columns.Add("TipoNumero", typeof(int));
                 dt.Columns.Add("TipoNome", typeof(string));
-                dt.Rows.Add("01", "Crédito");
-                dt.Rows.Add("02", "Débito");
+                dt.Rows.Add(1, "Crédito");
+                dt.Rows.Add(2, "Débito");
 
                 cbx.DataSource = dt;
                 cbx.ValueMember = "TipoNumero";

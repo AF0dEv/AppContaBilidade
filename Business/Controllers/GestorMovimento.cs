@@ -31,13 +31,13 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
 
             mv = null;
         }
-        public void updateMovimento(DateTime data, string descricao, int valor, string marcacao, int Idcliente)
+        public void updateMovimento(DateTime data, string descricao, decimal valor, char tipo, string marcacao, int idCliente, int idMov)
         {
             mv = null;
 
-            if (db.Movimentos is not null && mv is not null)
+            if (db.Movimentos is not null)
             {
-                mv = db.Movimentos.FirstOrDefault(m => m.Id == Convert.ToInt16(Idcliente));
+                mv = db.Movimentos.FirstOrDefault(m => m.Id == idMov);
 
                 if (mv is not null)
                 {
@@ -45,7 +45,8 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
                     mv.Descricao = descricao;
                     mv.Valor = valor;
                     mv.Marcacao = marcacao;
-                    mv.ClienteId = Idcliente;
+                    mv.ClienteId = idCliente;
+                    mv.Tipo = tipo;
                 }
             }
 
