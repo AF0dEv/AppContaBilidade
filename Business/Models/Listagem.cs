@@ -200,7 +200,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     NIF = m.NIF,
                     Nome = m.Nome,
                     Estado = m.Estado,
-                }).Where(m => m.Estado == null && m.Estado == "").ToList();
+                    Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
+
+                }).Where(m => m.Estado == null || m.Estado == "").ToList();
             }
 
             return listaClientes;
@@ -218,8 +220,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     NIF = m.NIF,
                     Nome = m.Nome,
                     Estado = m.Estado,
+                    Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
 
-                }).Where(m => m.Estado != null && m.Estado != "").ToList();
+                }).Where(m => m.Estado != null).ToList();
             }
 
             return listaClientes;
@@ -356,7 +359,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                     NIF = m.NIF,
                     Nome = m.Nome,
                     Estado = m.Estado,
-
+                    Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
                 }).ToList();
             }
 

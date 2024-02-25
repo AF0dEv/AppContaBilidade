@@ -55,6 +55,7 @@
             label2 = new Label();
             txtDescricao = new TextBox();
             label7 = new Label();
+            btnLimparSelecao = new Button();
             mnForms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPrincipal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMvLivres).BeginInit();
@@ -172,6 +173,7 @@
             // gbxCriarMovimento
             // 
             gbxCriarMovimento.BackColor = Color.Transparent;
+            gbxCriarMovimento.Controls.Add(btnLimparSelecao);
             gbxCriarMovimento.Controls.Add(txtIdMovimento);
             gbxCriarMovimento.Controls.Add(txtValor);
             gbxCriarMovimento.Controls.Add(btnApagarMov);
@@ -364,6 +366,18 @@
             label7.TabIndex = 7;
             label7.Text = "DATA";
             // 
+            // btnLimparSelecao
+            // 
+            btnLimparSelecao.Cursor = Cursors.Hand;
+            btnLimparSelecao.FlatStyle = FlatStyle.Popup;
+            btnLimparSelecao.Location = new Point(163, 18);
+            btnLimparSelecao.Name = "btnLimparSelecao";
+            btnLimparSelecao.Size = new Size(113, 57);
+            btnLimparSelecao.TabIndex = 29;
+            btnLimparSelecao.Text = "LIMPAR SELEÇAO";
+            btnLimparSelecao.UseVisualStyleBackColor = true;
+            btnLimparSelecao.Click += btnLimparSelecao_Click;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -424,5 +438,6 @@
         private Button btnApagarMov;
         private TextBox txtValor;
         private TextBox txtIdMovimento;
+        private Button btnLimparSelecao;
     }
 }

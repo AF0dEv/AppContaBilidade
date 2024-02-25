@@ -22,12 +22,12 @@ namespace RegistoMovimentosSrJoaquim
         // ============= MÉTODOS ================
         private void V_Load(object sender, EventArgs e)
         {
-            txtIdMovimento.Text = "0";
             pc.PreencherCbxClientesMov(cbxClienteMov);
             pc.PreencherCbxTipos(cbxTipo);
             pc.PreencherDgvMovimentos(dgvPrincipal);
             pc.PreencherDgvMarcados(dgvMvMarcados);
             pc.PreencherDgvLivres(dgvMvLivres);
+            LimparSelecao();
         }
 
         private void btnMnListagem_Click(object sender, EventArgs e)
@@ -198,6 +198,11 @@ namespace RegistoMovimentosSrJoaquim
             pc.PreencherDgvMovimentos(dgvPrincipal);
             pc.PreencherDgvMarcados(dgvMvMarcados);
             pc.PreencherDgvLivres(dgvMvLivres);
+        }
+
+        private void btnLimparSelecao_Click(object sender, EventArgs e)
+        {
+            LimparSelecao();
         }
     }
 

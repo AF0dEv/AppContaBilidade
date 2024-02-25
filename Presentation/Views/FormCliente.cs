@@ -41,13 +41,22 @@ namespace RegistoMovimentosSrJoaquim
             pc.PreencherDgvClientes(dgvCliente);
             pc.PreencherDgvEstadoAtivo(dgvClienteAtivo);
             pc.PreencherDgvEstadoPendente(dgvClientePendente);
+            LimparSelecao();
         }
 
         private void btnCriarClix_Click(object sender, EventArgs e)
         {
             string nif = txtNIF.Text;
             string nome = txtNome.Text;
-            string estado = txtEstado.Text;
+            string? estado = null;
+            if (txtEstado.Text.Equals(null) || txtEstado.Text.Equals(""))
+            {
+                estado = null;
+            }
+            else
+            {
+                estado = txtEstado.Text;
+            }
 
             string mensagem =
             @$"Está a adicionar o cliente com os seguintes dados: 
@@ -62,15 +71,25 @@ namespace RegistoMovimentosSrJoaquim
 
             var result = MessageBox.Show(mensagem, cabecalho, MessageBoxButtons.YesNo);
 
-            if (!string.IsNullOrWhiteSpace(txtNIF.Text)
-                && !string.IsNullOrWhiteSpace(txtNome.Text))
+            if (!string.IsNullOrWhiteSpace(txtNIF.Text) && !string.IsNullOrWhiteSpace(txtNome.Text))
+            {
 
                 if (result == DialogResult.Yes)
+                {
                     pc.addCliente(Convert.ToInt32(nif), nome, estado);
+                }
                 else
+                {
                     MessageBox.Show("Operaçao cancelada.");
+                }
+            }
             else
+            {
                 MessageBox.Show("Preencha os campos para adicionar um cliente.");
+            }
+            pc.PreencherDgvClientes(dgvCliente);
+            pc.PreencherDgvEstadoAtivo(dgvClienteAtivo);
+            pc.PreencherDgvEstadoPendente(dgvClientePendente);
         }
 
         private void btnAtualizarCli_Click(object sender, EventArgs e)
@@ -80,9 +99,16 @@ namespace RegistoMovimentosSrJoaquim
             string estado = txtEstado.Text;
 
             if (dgvCliente.SelectedRows.Count > 0)
+            {
                 pc.updateCliente(Convert.ToInt32(nif), nome, estado);
+            }
             else
+            {
                 MessageBox.Show("Selecione um cliente da tabela para atualizar.");
+            }
+            pc.PreencherDgvClientes(dgvCliente);
+            pc.PreencherDgvEstadoAtivo(dgvClienteAtivo);
+            pc.PreencherDgvEstadoPendente(dgvClientePendente);
         }
 
         private void dgvCliente_SelectionChanged(object sender, EventArgs e)
@@ -95,6 +121,45 @@ namespace RegistoMovimentosSrJoaquim
                 txtEstado.Text = dgvCliente.SelectedCells[3].Value.ToString();
             }
             catch { }
+        }
+
+        private void LimparSelecao()
+        {
+
+            // Clientes
+            txtIdCliente.Clear();
+            txtNIF.Clear();
+            txtNome.Clear();
+            txtEstado.Clear();
+            dgvCliente.ClearSelection();
+        }
+
+        private void btnLimparSelecao_Click(object sender, EventArgs e)
+        {
+            LimparSelecao();
+        }
+
+        private void btnApagar_Click(object sender, EventArgs e)
+        {
+            string idCliente = txtIdCliente.Text;
+            if (dgvCliente.SelectedRows.Count > 0)
+            {
+                if (pc.ListarMovimentosClienteSelecionado(idCliente).Count > 0)
+                {
+                    MessageBox.Show("O cliente selecionado possui movimentos.");
+                }
+                else 
+                { 
+                    pc.deleteCliente(idCliente);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente da tabela para remover.");
+            }
+            pc.PreencherDgvClientes(dgvCliente);
+            pc.PreencherDgvEstadoAtivo(dgvClienteAtivo);
+            pc.PreencherDgvEstadoPendente(dgvClientePendente);
         }
     }
 }

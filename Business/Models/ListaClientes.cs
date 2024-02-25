@@ -12,6 +12,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
         public int NIF { get; set; }
         public string Nome { get; set; }
         public string? Estado { get; set; }
+        public decimal Saldo { get; set; }
 
     }
 }

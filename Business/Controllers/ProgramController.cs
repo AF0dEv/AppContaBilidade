@@ -42,7 +42,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             gc.updateCliente(nif, nome, estado);
         }
-        public void deleteCliente(DataGridView dgv, string ClienteId)
+        public void deleteCliente(string ClienteId)
         {
             gc.deleteCliente(ClienteId);
         }

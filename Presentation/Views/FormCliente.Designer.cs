@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCliente));
             gbxCriarCliente = new GroupBox();
+            btnLimparSelecao = new Button();
+            txtIdCliente = new TextBox();
             btnVoltar = new Button();
             txtNome = new TextBox();
             txtEstado = new TextBox();
@@ -45,7 +47,6 @@
             label5 = new Label();
             btnAtualizarCli = new Button();
             btnApagar = new Button();
-            txtIdCliente = new TextBox();
             gbxCriarCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCliente).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClienteAtivo).BeginInit();
@@ -54,6 +55,7 @@
             // 
             // gbxCriarCliente
             // 
+            gbxCriarCliente.Controls.Add(btnLimparSelecao);
             gbxCriarCliente.Controls.Add(txtIdCliente);
             gbxCriarCliente.Controls.Add(btnVoltar);
             gbxCriarCliente.Controls.Add(txtNome);
@@ -69,6 +71,30 @@
             gbxCriarCliente.TabIndex = 0;
             gbxCriarCliente.TabStop = false;
             gbxCriarCliente.Text = "CLIENTE";
+            // 
+            // btnLimparSelecao
+            // 
+            btnLimparSelecao.Cursor = Cursors.Hand;
+            btnLimparSelecao.FlatStyle = FlatStyle.Popup;
+            btnLimparSelecao.Location = new Point(6, 66);
+            btnLimparSelecao.Name = "btnLimparSelecao";
+            btnLimparSelecao.Size = new Size(113, 57);
+            btnLimparSelecao.TabIndex = 18;
+            btnLimparSelecao.Text = "LIMPAR SELEÇAO";
+            btnLimparSelecao.UseVisualStyleBackColor = true;
+            btnLimparSelecao.Click += btnLimparSelecao_Click;
+            // 
+            // txtIdCliente
+            // 
+            txtIdCliente.Cursor = Cursors.IBeam;
+            txtIdCliente.Enabled = false;
+            txtIdCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtIdCliente.ForeColor = SystemColors.WindowText;
+            txtIdCliente.Location = new Point(6, 26);
+            txtIdCliente.Name = "txtIdCliente";
+            txtIdCliente.PlaceholderText = "ID...";
+            txtIdCliente.Size = new Size(155, 34);
+            txtIdCliente.TabIndex = 22;
             // 
             // btnVoltar
             // 
@@ -237,18 +263,7 @@
             btnApagar.TabIndex = 17;
             btnApagar.Text = "APAGAR";
             btnApagar.UseVisualStyleBackColor = true;
-            // 
-            // txtIdCliente
-            // 
-            txtIdCliente.Cursor = Cursors.IBeam;
-            txtIdCliente.Enabled = false;
-            txtIdCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtIdCliente.ForeColor = SystemColors.WindowText;
-            txtIdCliente.Location = new Point(6, 26);
-            txtIdCliente.Name = "txtIdCliente";
-            txtIdCliente.PlaceholderText = "ID...";
-            txtIdCliente.Size = new Size(155, 34);
-            txtIdCliente.TabIndex = 22;
+            btnApagar.Click += btnApagar_Click;
             // 
             // FormCliente
             // 
@@ -297,5 +312,6 @@
         private Button btnAtualizarCli;
         private Button btnApagar;
         private TextBox txtIdCliente;
+        private Button btnLimparSelecao;
     }
 }
