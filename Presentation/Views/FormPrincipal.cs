@@ -177,6 +177,7 @@ namespace RegistoMovimentosSrJoaquim
             txtIdMovimento.Clear();
             txtDescricao.Clear();
             txtMarcacao.Clear();
+            txtValor.Clear();
             cbxClienteMov.SelectedIndex = -1;
             cbxTipo.SelectedIndex = -1;
             dtpMovimento.ResetText();

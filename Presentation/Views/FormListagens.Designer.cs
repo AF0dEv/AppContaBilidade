@@ -41,10 +41,11 @@
             rbtPeriodoTempo = new RadioButton();
             gbMes = new GroupBox();
             gbPeriodoTempo = new GroupBox();
-            dtpList1 = new MonthCalendar();
+            dtpListagem = new MonthCalendar();
             btnVoltarLis = new Button();
             btnSaidas = new Button();
             btnEntradas = new Button();
+            btnListar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListagem).BeginInit();
             gbMes.SuspendLayout();
             gbPeriodoTempo.SuspendLayout();
@@ -178,26 +179,27 @@
             // 
             // gbPeriodoTempo
             // 
-            gbPeriodoTempo.Controls.Add(dtpList1);
+            gbPeriodoTempo.Controls.Add(dtpListagem);
             gbPeriodoTempo.Location = new Point(680, 311);
             gbPeriodoTempo.Name = "gbPeriodoTempo";
             gbPeriodoTempo.Size = new Size(346, 217);
             gbPeriodoTempo.TabIndex = 38;
             gbPeriodoTempo.TabStop = false;
             // 
-            // dtpList1
+            // dtpListagem
             // 
-            dtpList1.Location = new Point(38, 10);
-            dtpList1.MaxSelectionCount = 10957266;
-            dtpList1.Name = "dtpList1";
-            dtpList1.TabIndex = 0;
+            dtpListagem.Location = new Point(38, 10);
+            dtpListagem.MaxSelectionCount = 10957266;
+            dtpListagem.Name = "dtpListagem";
+            dtpListagem.TabIndex = 0;
+            dtpListagem.DateSelected += dtpListagem_DateSelected;
             // 
             // btnVoltarLis
             // 
             btnVoltarLis.Cursor = Cursors.Hand;
             btnVoltarLis.FlatStyle = FlatStyle.Popup;
             btnVoltarLis.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVoltarLis.Location = new Point(12, 499);
+            btnVoltarLis.Location = new Point(424, 499);
             btnVoltarLis.Name = "btnVoltarLis";
             btnVoltarLis.Size = new Size(113, 29);
             btnVoltarLis.TabIndex = 39;
@@ -229,12 +231,26 @@
             btnEntradas.Text = "ENTRADAS";
             btnEntradas.UseVisualStyleBackColor = true;
             // 
+            // btnListar
+            // 
+            btnListar.Cursor = Cursors.Hand;
+            btnListar.FlatStyle = FlatStyle.Popup;
+            btnListar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnListar.Location = new Point(11, 499);
+            btnListar.Name = "btnListar";
+            btnListar.Size = new Size(113, 29);
+            btnListar.TabIndex = 42;
+            btnListar.Text = "LISTAR";
+            btnListar.UseVisualStyleBackColor = true;
+            btnListar.Click += btnListar_Click;
+            // 
             // FormListagens
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             ClientSize = new Size(1038, 540);
+            Controls.Add(btnListar);
             Controls.Add(btnEntradas);
             Controls.Add(btnSaidas);
             Controls.Add(btnVoltarLis);
@@ -274,9 +290,10 @@
         private RadioButton rbtPeriodoTempo;
         private GroupBox gbMes;
         private GroupBox gbPeriodoTempo;
-        private MonthCalendar dtpList1;
+        private MonthCalendar dtpListagem;
         private Button btnVoltarLis;
         private Button btnSaidas;
         private Button btnEntradas;
+        private Button btnListar;
     }
 }

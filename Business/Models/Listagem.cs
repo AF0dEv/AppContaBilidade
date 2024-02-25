@@ -365,5 +365,51 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
 
             return listaClientes;
         }
+
+        public List<ListaMovimentos>? ListarMovimentosTodosClientesMesPeriodo(string? mesNumero, SelectionRange? periodoTempo, int mesPeriodo)
+        {
+
+            // mesPeriodo = 1 : MES
+            // mesPeriodo = 2 : PERIODO
+
+            List<ListaMovimentos>? listaMovimentos = null;
+
+            if (db.Movimentos is not null && mesPeriodo == 1 && mesNumero is not null)
+            {
+                listaMovimentos = db.Movimentos.Where(x => x.Data.Month == Convert.ToInt16(mesNumero)).
+                Select(m => new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+                }).ToList();
+            }
+            else if (db.Movimentos is not null && mesPeriodo == 2 && periodoTempo is not null)
+            {
+                DateTime dataInicio = periodoTempo.Start;
+                DateTime dataFinal = periodoTempo.End;
+                listaMovimentos = db.Movimentos.Where(x => x.Data.Date >= dataInicio && x.Data.Date <= dataFinal)
+                .Select(m => new ListaMovimentos
+                {
+                    Id = m.Id,
+                    Data = m.Data.ToString("yyyy-MM-dd"),
+                    Descricao = m.Descricao,
+                    Valor = m.Valor,
+                    Tipo = m.Tipo,
+                    Marcacao = m.Marcacao,
+                    Cliente = m.Cliente.Nome,
+                    ClienteId = m.ClienteId,
+                    Saldo = GetSaldoCorrente(m.Cliente.Nome, m.Data)
+
+                }).ToList();
+            }
+            return listaMovimentos;
+        }
     }
 }
