@@ -428,7 +428,7 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
             dgvMovimentos.DataSource = ls.PreencherDgvMovimentos();
         }
         public void PreencherDgvLivres(DataGridView dgvLivres)
-        { 
+        {
             dgvLivres.DataSource = ls.PreencherDgvLivres();
         }
         public void PreencherDgvMarcados(DataGridView dgvMarcados)
@@ -466,7 +466,10 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             return ls.ListarMovimentosTodosClientesMesPeriodo(mesNumero, periodoTempo, mesPeriodo);
         }
-
+        public List<ListaClientes>? ListarClientesDevemMaisMil()
+        {
+            return ls.ListarClientesDevemMaisMil();
+        }
     }
 }
 

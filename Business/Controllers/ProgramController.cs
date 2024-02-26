@@ -126,5 +126,9 @@ namespace RegistoMovimentosSrJoaquim.Business.Controllers
         {
             return gl.ListarMovimentosTodosClientesMesPeriodo(mesNumero, periodoTempo, mesPeriodo);
         }
+        public List<ListaClientes>? ListarClientesDevemMaisMil()
+        {
+            return gl.ListarClientesDevemMaisMil();
+        }
     }
 }

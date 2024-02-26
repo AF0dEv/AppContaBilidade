@@ -162,6 +162,7 @@ namespace RegistoMovimentosSrJoaquim
             string? clienteId = null;
             string? data = null;
             SelectionRange? range = null;
+            dgvListagem.DataSource = null;
             // se for todos / todos
             if (rbtTempoPreciso.Checked && cbxMes.SelectedValue.ToString().Equals("00") && cbxClienteLis.SelectedValue.ToString().Equals("0"))
             {
@@ -193,7 +194,7 @@ namespace RegistoMovimentosSrJoaquim
                 dgvListagem.DataSource = pc.ListarMovimentosTodosClientesMesPeriodo(null, range, 2);
             }
 
-            // ================= MELHORAR DAQUI PARA BAIXO --> sFALTA SO OS BOTOES E ESTA FORM LISTAGEM COMPLETO (falta apenas arranjos finais formatacao dgv e tudo message box em todas as confirmaçoes e isso)
+            // ================= MELHORAR DAQUI PARA BAIXO --> FALTA SO OS BOTOES E ESTA FORM LISTAGEM COMPLETO (falta apenas arranjos finais formatacao dgv e tudo message box em todas as confirmaçoes e isso)
             else if (rbtPeriodoTempo.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && !dtpListagem.SelectionRange.Equals(null))
             {
                 string mensagem =
@@ -221,17 +222,20 @@ namespace RegistoMovimentosSrJoaquim
 
         private void btnEntradas_Click(object sender, EventArgs e)
         {
+            dgvListagem.DataSource = null;
             pc.PreencherDgvEntradas(dgvListagem);
         }
 
         private void btnSaidas_Click(object sender, EventArgs e)
         {
+            dgvListagem.DataSource = null;
             pc.PreencherDgvSaidas(dgvListagem);
         }
 
         private void btnMaiorMil_Click(object sender, EventArgs e)
         {
-            
+            dgvListagem.DataSource = null;
+            dgvListagem.DataSource = pc.ListarClientesDevemMaisMil();
         }
     }
 }

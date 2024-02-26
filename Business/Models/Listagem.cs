@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using RegistoMovimentosSrJoaquim.Business.Controllers;
-using RegistoMovimentosSrJoaquim.Persistence;
+using RegistoMovimentosSrJoaquim.Persistence.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -413,24 +413,23 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
         }
         public List<ListaClientes>? ListarClientesDevemMaisMil()
         {
-            List<ListaClientes>? listaClientes = null;
-            if (db.Clientes is not null)
+            List<ListaClientes>? listaClientesNegativa = null;
+            if (db.Movimentos is not null)
             {
-                listaClientes = db.Clientes.Select(m => new ListaClientes
-                {
-                    Id = m.Id,
-                    NIF = m.NIF,
-                    Nome = m.Nome,
-                    Estado = m.Estado,
-                    Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
-                }).ToList();
+                listaClientesNegativa = db.Clientes
+                    .ToList() // Traga os dados para a memória
+                    .Select(m => new ListaClientes
+                    {
+                        Id = m.Id,
+                        NIF = m.NIF,
+                        Nome = m.Nome,
+                        Estado = m.Estado,
+                        Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
+                    })
+                    .Where(c => c.Saldo < -1000)
+                    .ToList();
             }
-
-
-
-
-
-            return listaClientes;
+            return listaClientesNegativa;
         }
     }
 }
