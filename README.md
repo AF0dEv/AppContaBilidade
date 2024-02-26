@@ -1,4 +1,4 @@
-===================================================================== FINISHED ========================================================================================
+===================================================================== FINISHED 
 
 O nosso cliente, chamemos-lhe Clix, abreviatura de ClienteX, presta serviços de acessoria, análise e candidatura de projetos, fiscalidade e contabilidade, tarefas não especificadas cobradas à hora, outros. 
 
@@ -36,7 +36,7 @@ listagem dos clientes (nome do cliente, saldo), mas apenas dos clientes que não
 
 listagem de cliente, excluindo os movimentos com certo marcador, entre duas datas (mostrar saldo linha a linha); os movimentos marcados aparecem, mas não afetam os saldos 
 
-========================================================================== ENGLISH ====================================================================================
+========================================================================== ENGLISH 
 
 Our client, let's call him Clix, short for ClienteX, provides consultancy services, project analysis and application, taxation and accounting, unspecified tasks charged by the hour, and others.
 
