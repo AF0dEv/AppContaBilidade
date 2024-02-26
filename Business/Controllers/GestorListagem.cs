@@ -1,5 +1,5 @@
 ﻿using RegistoMovimentosSrJoaquim.Business.Models;
-using RegistoMovimentosSrJoaquim.Persistence.Data;
+using RegistoMovimentosSrJoaquim.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Data;

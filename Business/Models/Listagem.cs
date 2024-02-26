@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using RegistoMovimentosSrJoaquim.Business.Controllers;
-using RegistoMovimentosSrJoaquim.Persistence.Data;
+using RegistoMovimentosSrJoaquim.Persistence;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -410,6 +410,27 @@ namespace RegistoMovimentosSrJoaquim.Business.Models
                 }).ToList();
             }
             return listaMovimentos;
+        }
+        public List<ListaClientes>? ListarClientesDevemMaisMil()
+        {
+            List<ListaClientes>? listaClientes = null;
+            if (db.Clientes is not null)
+            {
+                listaClientes = db.Clientes.Select(m => new ListaClientes
+                {
+                    Id = m.Id,
+                    NIF = m.NIF,
+                    Nome = m.Nome,
+                    Estado = m.Estado,
+                    Saldo = GetSaldoCorrente(m.Nome, DateTime.Now.Date),
+                }).ToList();
+            }
+
+
+
+
+
+            return listaClientes;
         }
     }
 }

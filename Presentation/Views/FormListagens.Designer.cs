@@ -56,10 +56,11 @@
             dgvListagem.BackgroundColor = SystemColors.ControlLight;
             dgvListagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListagem.Cursor = Cursors.Hand;
-            dgvListagem.Location = new Point(12, 38);
+            dgvListagem.Location = new Point(10, 28);
+            dgvListagem.Margin = new Padding(3, 2, 3, 2);
             dgvListagem.Name = "dgvListagem";
             dgvListagem.RowHeadersWidth = 51;
-            dgvListagem.Size = new Size(1014, 231);
+            dgvListagem.Size = new Size(887, 173);
             dgvListagem.TabIndex = 3;
             // 
             // label7
@@ -67,9 +68,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(444, 9);
+            label7.Location = new Point(388, 7);
             label7.Name = "label7";
-            label7.Size = new Size(155, 26);
+            label7.Size = new Size(125, 21);
             label7.TabIndex = 18;
             label7.Text = "MOVIMENTOS";
             // 
@@ -78,9 +79,9 @@
             label11.AutoSize = true;
             label11.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Black;
-            label11.Location = new Point(12, 279);
+            label11.Location = new Point(10, 209);
             label11.Name = "label11";
-            label11.Size = new Size(99, 26);
+            label11.Size = new Size(80, 21);
             label11.TabIndex = 28;
             label11.Text = "CLIENTE";
             // 
@@ -88,9 +89,9 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            label12.Location = new Point(17, 57);
+            label12.Location = new Point(15, 43);
             label12.Name = "label12";
-            label12.Size = new Size(57, 26);
+            label12.Size = new Size(46, 21);
             label12.TabIndex = 29;
             label12.Text = "MÊS";
             // 
@@ -99,12 +100,14 @@
             btnMaiorMil.Cursor = Cursors.Hand;
             btnMaiorMil.FlatStyle = FlatStyle.Popup;
             btnMaiorMil.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMaiorMil.Location = new Point(130, 356);
+            btnMaiorMil.Location = new Point(114, 267);
+            btnMaiorMil.Margin = new Padding(3, 2, 3, 2);
             btnMaiorMil.Name = "btnMaiorMil";
-            btnMaiorMil.Size = new Size(113, 29);
+            btnMaiorMil.Size = new Size(99, 22);
             btnMaiorMil.TabIndex = 32;
             btnMaiorMil.Text = ">1000";
             btnMaiorMil.UseVisualStyleBackColor = true;
+            btnMaiorMil.Click += btnMaiorMil_Click;
             // 
             // cbxClienteLis
             // 
@@ -112,9 +115,10 @@
             cbxClienteLis.Font = new Font("Segoe UI", 12F);
             cbxClienteLis.ForeColor = Color.Black;
             cbxClienteLis.FormattingEnabled = true;
-            cbxClienteLis.Location = new Point(130, 279);
+            cbxClienteLis.Location = new Point(114, 209);
+            cbxClienteLis.Margin = new Padding(3, 2, 3, 2);
             cbxClienteLis.Name = "cbxClienteLis";
-            cbxClienteLis.Size = new Size(151, 36);
+            cbxClienteLis.Size = new Size(133, 29);
             cbxClienteLis.TabIndex = 31;
             cbxClienteLis.SelectedIndexChanged += cbxClienteLis_SelectedIndexChanged;
             // 
@@ -123,9 +127,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(12, 359);
+            label1.Location = new Point(10, 269);
             label1.Name = "label1";
-            label1.Size = new Size(112, 26);
+            label1.Size = new Size(91, 21);
             label1.TabIndex = 33;
             label1.Text = "CLIENTES";
             // 
@@ -135,9 +139,10 @@
             cbxMes.Font = new Font("Segoe UI", 12F);
             cbxMes.ForeColor = Color.Black;
             cbxMes.FormattingEnabled = true;
-            cbxMes.Location = new Point(80, 51);
+            cbxMes.Location = new Point(70, 38);
+            cbxMes.Margin = new Padding(3, 2, 3, 2);
             cbxMes.Name = "cbxMes";
-            cbxMes.Size = new Size(151, 36);
+            cbxMes.Size = new Size(133, 29);
             cbxMes.TabIndex = 26;
             cbxMes.SelectedIndexChanged += cbxMes_SelectedIndexChanged;
             // 
@@ -146,9 +151,10 @@
             rbtTempoPreciso.AutoSize = true;
             rbtTempoPreciso.Checked = true;
             rbtTempoPreciso.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            rbtTempoPreciso.Location = new Point(424, 277);
+            rbtTempoPreciso.Location = new Point(371, 208);
+            rbtTempoPreciso.Margin = new Padding(3, 2, 3, 2);
             rbtTempoPreciso.Name = "rbtTempoPreciso";
-            rbtTempoPreciso.Size = new Size(78, 30);
+            rbtTempoPreciso.Size = new Size(64, 25);
             rbtTempoPreciso.TabIndex = 35;
             rbtTempoPreciso.TabStop = true;
             rbtTempoPreciso.Text = "MÊS";
@@ -159,9 +165,10 @@
             // 
             rbtPeriodoTempo.AutoSize = true;
             rbtPeriodoTempo.Font = new Font("Yu Gothic", 12F, FontStyle.Bold);
-            rbtPeriodoTempo.Location = new Point(748, 275);
+            rbtPeriodoTempo.Location = new Point(654, 206);
+            rbtPeriodoTempo.Margin = new Padding(3, 2, 3, 2);
             rbtPeriodoTempo.Name = "rbtPeriodoTempo";
-            rbtPeriodoTempo.Size = new Size(205, 30);
+            rbtPeriodoTempo.Size = new Size(165, 25);
             rbtPeriodoTempo.TabIndex = 36;
             rbtPeriodoTempo.Text = "PERIODO TEMPO";
             rbtPeriodoTempo.UseVisualStyleBackColor = true;
@@ -171,24 +178,29 @@
             // 
             gbMes.Controls.Add(label12);
             gbMes.Controls.Add(cbxMes);
-            gbMes.Location = new Point(349, 336);
+            gbMes.Location = new Point(305, 252);
+            gbMes.Margin = new Padding(3, 2, 3, 2);
             gbMes.Name = "gbMes";
-            gbMes.Size = new Size(250, 125);
+            gbMes.Padding = new Padding(3, 2, 3, 2);
+            gbMes.Size = new Size(219, 94);
             gbMes.TabIndex = 37;
             gbMes.TabStop = false;
             // 
             // gbPeriodoTempo
             // 
             gbPeriodoTempo.Controls.Add(dtpListagem);
-            gbPeriodoTempo.Location = new Point(680, 311);
+            gbPeriodoTempo.Location = new Point(595, 233);
+            gbPeriodoTempo.Margin = new Padding(3, 2, 3, 2);
             gbPeriodoTempo.Name = "gbPeriodoTempo";
-            gbPeriodoTempo.Size = new Size(346, 217);
+            gbPeriodoTempo.Padding = new Padding(3, 2, 3, 2);
+            gbPeriodoTempo.Size = new Size(303, 163);
             gbPeriodoTempo.TabIndex = 38;
             gbPeriodoTempo.TabStop = false;
             // 
             // dtpListagem
             // 
-            dtpListagem.Location = new Point(38, 10);
+            dtpListagem.Location = new Point(33, 8);
+            dtpListagem.Margin = new Padding(8, 7, 8, 7);
             dtpListagem.MaxSelectionCount = 10957266;
             dtpListagem.Name = "dtpListagem";
             dtpListagem.TabIndex = 0;
@@ -199,9 +211,10 @@
             btnVoltarLis.Cursor = Cursors.Hand;
             btnVoltarLis.FlatStyle = FlatStyle.Popup;
             btnVoltarLis.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVoltarLis.Location = new Point(424, 499);
+            btnVoltarLis.Location = new Point(10, 381);
+            btnVoltarLis.Margin = new Padding(3, 2, 3, 2);
             btnVoltarLis.Name = "btnVoltarLis";
-            btnVoltarLis.Size = new Size(113, 29);
+            btnVoltarLis.Size = new Size(99, 22);
             btnVoltarLis.TabIndex = 39;
             btnVoltarLis.Text = "VOLTAR";
             btnVoltarLis.UseVisualStyleBackColor = true;
@@ -212,33 +225,38 @@
             btnSaidas.Cursor = Cursors.Hand;
             btnSaidas.FlatStyle = FlatStyle.Popup;
             btnSaidas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSaidas.Location = new Point(12, 444);
+            btnSaidas.Location = new Point(10, 333);
+            btnSaidas.Margin = new Padding(3, 2, 3, 2);
             btnSaidas.Name = "btnSaidas";
-            btnSaidas.Size = new Size(113, 29);
+            btnSaidas.Size = new Size(99, 22);
             btnSaidas.TabIndex = 40;
             btnSaidas.Text = "SAÍDAS";
             btnSaidas.UseVisualStyleBackColor = true;
+            btnSaidas.Click += btnSaidas_Click;
             // 
             // btnEntradas
             // 
             btnEntradas.Cursor = Cursors.Hand;
             btnEntradas.FlatStyle = FlatStyle.Popup;
             btnEntradas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEntradas.Location = new Point(12, 409);
+            btnEntradas.Location = new Point(10, 307);
+            btnEntradas.Margin = new Padding(3, 2, 3, 2);
             btnEntradas.Name = "btnEntradas";
-            btnEntradas.Size = new Size(113, 29);
+            btnEntradas.Size = new Size(99, 22);
             btnEntradas.TabIndex = 41;
             btnEntradas.Text = "ENTRADAS";
             btnEntradas.UseVisualStyleBackColor = true;
+            btnEntradas.Click += btnEntradas_Click;
             // 
             // btnListar
             // 
             btnListar.Cursor = Cursors.Hand;
             btnListar.FlatStyle = FlatStyle.Popup;
             btnListar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnListar.Location = new Point(11, 499);
+            btnListar.Location = new Point(375, 372);
+            btnListar.Margin = new Padding(3, 2, 3, 2);
             btnListar.Name = "btnListar";
-            btnListar.Size = new Size(113, 29);
+            btnListar.Size = new Size(99, 22);
             btnListar.TabIndex = 42;
             btnListar.Text = "LISTAR";
             btnListar.UseVisualStyleBackColor = true;
@@ -246,10 +264,10 @@
             // 
             // FormListagens
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
-            ClientSize = new Size(1038, 540);
+            ClientSize = new Size(908, 405);
             Controls.Add(btnListar);
             Controls.Add(btnEntradas);
             Controls.Add(btnSaidas);
@@ -265,6 +283,7 @@
             Controls.Add(dgvListagem);
             Controls.Add(label11);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormListagens";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LISTAGENS";

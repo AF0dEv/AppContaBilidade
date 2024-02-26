@@ -58,7 +58,7 @@ namespace RegistoMovimentosSrJoaquim
             else
             {
                 gbMes.Hide();
-                gbMes.Enabled = false;   
+                gbMes.Enabled = false;
             }
 
         }
@@ -172,7 +172,7 @@ namespace RegistoMovimentosSrJoaquim
             {
                 data = cbxMes.SelectedValue.ToString();
                 dgvListagem.DataSource = pc.ListarMovimentosTodosClientesMesPeriodo(data, null, 1);
-            }            
+            }
             // se for cliente preciso e mes todos
             else if (rbtTempoPreciso.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && cbxMes.SelectedValue.ToString().Equals("00"))
             {
@@ -193,14 +193,12 @@ namespace RegistoMovimentosSrJoaquim
                 dgvListagem.DataSource = pc.ListarMovimentosTodosClientesMesPeriodo(null, range, 2);
             }
 
-            // ================= MELHORAR DAQUI PARA BAIXO --> LIMPEZA DE SELECAO DE PERIODO DE TEMPO / QQL PERIODO DE TEMPO NAO CHEGA LA POIS TEM SEMPRE PERIODO SELECIONADO / ATE DIA DE HOJE NAO FUNCIONA POIS O DATE START BEGIN ESTA PARA HOJE MUDAR RAPIDO ISSO (NO TIME) / FALTA SO OS BOTOES E ESTA FORM LISTAGEM COMPLETO (falta apenas arranjos finais formatacao dgv e tudo message box em todas as confirmaçoes e isso)
-
-            // se for cliente preciso e qql periodo tempo (Pedir para selecionar periodo tempo)
-            else if (rbtPeriodoTempo.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && dtpListagem.SelectionRange.Equals(null))
+            // ================= MELHORAR DAQUI PARA BAIXO --> sFALTA SO OS BOTOES E ESTA FORM LISTAGEM COMPLETO (falta apenas arranjos finais formatacao dgv e tudo message box em todas as confirmaçoes e isso)
+            else if (rbtPeriodoTempo.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && !dtpListagem.SelectionRange.Equals(null))
             {
                 string mensagem =
             @$"Não Selecionou Nenhum Periodo de Tempo!
-               
+               Apenas Dia Especifico!
                Deseja Continuar?";
 
                 string cabecalho = "PERIODO TEMPO NÃO SELECIONADO";
@@ -208,30 +206,32 @@ namespace RegistoMovimentosSrJoaquim
                 var result = MessageBox.Show(mensagem, cabecalho, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
+                    range = dtpListagem.SelectionRange;
+                    range.Start = DateTime.MinValue;
                     clienteId = cbxClienteLis.SelectedValue.ToString();
-                    dgvListagem.DataSource = pc.ListarMovimentosClienteSelecionado(clienteId);
+                    dgvListagem.DataSource = pc.ListarMovimentosClienteMesPeriodo(clienteId, null, range, 2);
                 }
                 else
                 {
                     MessageBox.Show("Operaçao cancelada.");
                 }
+
             }
-            // se for cliente preciso e periodo de tempo preciso
-            else if (rbtPeriodoTempo.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && !dtpListagem.SelectionRange.Equals(null))
-            {
-                range = dtpListagem.SelectionRange;
-                clienteId = cbxClienteLis.SelectedValue.ToString();
-                dgvListagem.DataSource = pc.ListarMovimentosClienteMesPeriodo(clienteId, null, range, 2);
-            }
-            // se for cliente preciso e ate o dia de hoje 
-            else if (rbtPeriodoTempo.Checked && !cbxClienteLis.SelectedValue.ToString().Equals("0") && dtpListagem.ShowToday == true)
-            {
-                SelectionRange range1 = new SelectionRange();
-                range1.Start = DateTime.Now;
-                range1.End = DateTime.Now;
-                clienteId = cbxClienteLis.SelectedValue.ToString();
-                dgvListagem.DataSource = pc.ListarMovimentosClienteMesPeriodo(clienteId, null, range1 , 2);
-            }
+        }
+
+        private void btnEntradas_Click(object sender, EventArgs e)
+        {
+            pc.PreencherDgvEntradas(dgvListagem);
+        }
+
+        private void btnSaidas_Click(object sender, EventArgs e)
+        {
+            pc.PreencherDgvSaidas(dgvListagem);
+        }
+
+        private void btnMaiorMil_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
